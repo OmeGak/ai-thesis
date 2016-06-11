@@ -11,5 +11,6 @@
 *.toc
 *.bcf
 *.fdb_latexmk
+build/
 README.html
 CHANGELOG.html
