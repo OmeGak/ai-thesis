@@ -1,49 +1,64 @@
 % !TEX root = ../thesis.tex
-%
+
 \chapter{Introduction}
 \label{sec:intro}
 
-\cleanchapterquote{You can’t do better design with a computer, but you can speed up your work enormously.}{Wim Crouwel}{(Graphic designer and typographer)}
+\cleanchapterquote{Computers are useless. They can only give you answers.}{Pablo Picasso}{}
 
-\Blindtext[2][2]
+In recent years the field of Deep Learning has experienced a quick growth. As techniques, hardware, and big volume of data, necessary to train deep Artificial Neural Networks (ANN) became a commodity performance of these sky-rocketed and we have seen problems being approached from the perspective of machine learning that no one before could have imagined.
 
-\section{Postcards: My Address}
-\label{sec:intro:address}
+% We will focus on one of these problems. The separation of style and content in images.
 
-\textbf{Ricardo Langner} \\
-Alfred-Schrapel-Str. 7 \\
-01307 Dresden \\
-Germany
+% While a human can easily tell when a piece of art is done in a similar style of another, the perception required
 
 
-\section{Motivation and Problem Statement}
+% ------------------------------------------------------------------------------
+
+\section{Problem Statement an Motivation}
 \label{sec:intro:motivation}
 
-\Blindtext[3][1] \cite{Jurgens:2000,Jurgens:1995,Miede:2011,Kohm:2011,Apple:keynote:2010,Apple:numbers:2010,Apple:pages:2010}
+\todo[inline]{Explain why separation of style and content is difficult and what is unconventional about how the task is being approached}
 
-\section{Results}
-\label{sec:intro:results}
 
-\Blindtext[1][2]
+% ------------------------------------------------------------------------------
 
-\subsection{Some References}
-\label{sec:intro:results:refs}
-\cite{WEB:GNU:GPL:2010,WEB:Miede:2011}
+\section{Goals}
+\label{sec:intro:goals}
+
+Artificial Neural Networks in general and Deep Learning in particular are extensive fields that find themselves in constant revision in current times and one could easily fall down the rabbit hole of history, generalities, cutting edge methods or technical details. In an effort to limit how deep we run into and to stay in topic, the scope of this supervised research project has been restricted to the following goals:
+
+\begin{enumerate}
+  \item Finding unconventional applications for Deep Learning.
+  \item Study separation of style and content
+  \item Explore implications patterns neural networks learn and can be exploited for different uses.
+\end{enumerate}
+
+
+% ------------------------------------------------------------------------------
+
+% \section{Results}
+% \label{sec:intro:results}
+%
+% \todo[inline]{If I end up implementing something, present results here}
+%
+% \subsection{Some References}
+% \label{sec:intro:results:refs}
+% \cite{WEB:GNU:GPL:2010,WEB:Miede:2011}
+
+
+% ------------------------------------------------------------------------------
 
 \section{Thesis Structure}
 \label{sec:intro:structure}
 
 \textbf{Chapter \ref{sec:related}} \\[0.2em]
-\blindtext
+In chapter \ref{sec:related} I introduce and discuss the results presented by \cite{Gatys2015}, work which inspired this research project. I present as well prior and derived works that further outline the task of separating style and content on images.
+
+\textbf{Chapter \ref{sec:concepts}} \\[0.2em]
+In chapter \ref{sec:concepts} I will briefly go over common concepts needed to understand both the underlaying workings of the different approaches to separation of style and content.
 
 \textbf{Chapter \ref{sec:system}} \\[0.2em]
-\blindtext
-
-\textbf{Chapter \ref{sec:concepts}} \\[0.2em]
-\blindtext
-
-\textbf{Chapter \ref{sec:concepts}} \\[0.2em]
-\blindtext
+In chapter \ref{sec:system} I will explain how separation of style and content is tackled in an unconventional way. Instead of training a NN, an already trained one is used and tweaked to perform the operation.
 
 \textbf{Chapter \ref{sec:conclusion}} \\[0.2em]
-\blindtext
+Finally, in chapter \ref{sec:conclusion} I will muse about the implications of NN being able to extrapolate their past experience to tackle problems for which they weren't trained for.
