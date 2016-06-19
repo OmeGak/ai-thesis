@@ -1,28 +1,52 @@
 % !TEX root = ../thesis.tex
-%
-\chapter{Concepts: This text is here to test a very long title, to simulate the line break behavior, to show that an extremely long tilte also works}
+
+\chapter{Concepts}
 \label{sec:concepts}
 
-\cleanchapterquote{Users do not care about what is inside the box, as long as the box does what they need done.}{Jef Raskin}{about Human Computer Interfaces}
+% \cleanchapterquote{Users do not care about what is inside the box, as long as the box does what they need done.}{Jef Raskin}{about Human Computer Interfaces}
 
-\Blindtext[2][1]
+Here I give non-exhaustive explanations for general concepts that I find useful to understand related work.
 
-\section{Concepts Section 1}
-\label{sec:concepts:sec1}
+\begin{description}
 
-\Blindtext[2][2]
 
-\section{Concepts Section 2}
-\label{sec:concepts:sec2}
+  \item[Perceptron]
+  A binary classifier regardless of how it is implemented. It may very well be just a function or a whole deep neural network.
 
-\Blindtext[3][2]
+  \item[Pooling layer]
+  A method for reducing spatial size of the representation of the input.
 
-\section{Concepts Section 3}
-\label{sec:concepts:sec3}
+  \item[Ground Truth]
 
-\Blindtext[4][2]
+  \item[Convolution]
+  A process of transformation applied to patches of the original input. In image processing it can be understood as a sliding window of $N$x$N$ pixels that gets applied to every single pixel of the original image and produces a new image. The sliding window is a feature map that defines how the image gets altered and can highlights different aspects of the original picture such as edges.
+\end{description}
 
-\section{Conclusion}
-\label{sec:concepts:conclusion}
 
-\Blindtext[2][1]
+% ------------------------------------------------------------------------------
+
+\section{Types of Neural Networks}
+\label{sec:Types of Neural Networks}
+
+\begin{description}
+  \item[Feed-forward Neural Networks]
+  The simplest type of artificial neural network, characterized by its connections not forming cycles and thus the data always flowing in one direction: from input to hidden layers to output.
+
+  \item[Multi-layer perceptron]
+  It's a type of feed-forward neural network composed of several layers where neurons of one layer are fully connected with the next one. These neural networks are normally used to classify different inputs.
+
+  \item[Convolutional Neural Networks] Also known as CNNs or ConvNets, they are feed-forward neural networks where neurons process regions of the visual input. They were inspired by cat's and responsible of one the major breakthroughs in image recognition.
+\end{description}
+
+
+% ------------------------------------------------------------------------------
+
+\section{Non-linear transformations}
+\label{sec:Non-linear transformations}
+
+They are filters (a.k.a. kernel or feature map), often represented by $\phi$, implemented as functions whose output is not linear to its input often used for feature extraction on images (edges, connectivity, etc.). Perceptron neurons use these as activation function because the dimensionality of the input can be reduced so that it becomes binary classifiable.
+
+\begin{description}
+  \item[tanh]
+  \item[ReLU]
+\end{description}
