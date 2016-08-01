@@ -9,6 +9,9 @@ Here I give non-exhaustive explanations for general concepts that I find useful 
 
 \begin{description}
 
+  \item[Perceptual quality]
+  A user-oriented metric used for evaluating picture quality.
+  It is usually evaluated by subjective tests with standard procedures run on several viewers. \cite{Lin2011}
 
   \item[Perceptron]
   A binary classifier regardless of how it is implemented. It may very well be just a function or a whole deep neural network.
@@ -16,10 +19,48 @@ Here I give non-exhaustive explanations for general concepts that I find useful 
   \item[Pooling layer]
   A method for reducing spatial size of the representation of the input.
 
+  \item[Weight layer]
+  TODO
+  \todo[inline]{}
+
   \item[Ground Truth]
 
   \item[Convolution]
-  A process of transformation applied to patches of the original input. In image processing it can be understood as a sliding window of $N$x$N$ pixels that gets applied to every single pixel of the original image and produces a new image. The sliding window is a feature map that defines how the image gets altered and can highlights different aspects of the original picture such as edges.
+  A process that summarizes the original input highlighting different aspects of it depending on the filter, usually a matrix with numbers that capture said aspects.
+  In image processing it can be understood as a sliding window of $N$x$N$ pixels, the filter, that gets applied to every single pixel of the original image and produces a new image (often called feature map) that captures either edges, straight lines, etc.
+  For the convolution to capture features of a pixel the filter has to take into account neighboring pixels.
+
+  \item[Convolutional filter]
+  Also called perceptive field
+  TODO
+  \todo[inline]{}
+
+  \item[Feature learning]
+  Finding kernel that produce the desired feature maps is very difficult since it greatly varies depending on the task.
+  In CNN, feature learning is the step in which the kernel gets increasingly better at the task of filtering an image or a feature map coming from a previous layer.
+
+  \item[ImageNet]
+  A large-scale, comprehensive and diverse database of accurately human-annotated images organized in a semantic hierarchy \cite{Deng2009} and it has become one of the main datasets in the field of object recognition.
+  It it, each noun in English, coming from the lexical database WordNet \cite{Wilkniss1998}, is associated with hundreds of clean high-resolution images.
+  These images depict different representations of the concepts or different perspectives and lighting conditions of the objects.
+  The hierarchical structure of the database makes it possible to interlink concepts, allowing algorithms to recognizing several concepts at the same time (dog/mammal/animal).
+  Its creation was motivated by the need to organize the huge amount of image data available on the Internet and make it available and useful to researchers of computer vision.
+
+  \item[ImageNet Large-Scale Visual Recognition Challenge]
+  The de-facto benchmark for large-scale object recognition algorithms \cite{Russakovsky2015}.
+  It is run as a yearly competition since 2010 and has been one of the accelerators of the improvement of object recognition algorithms.
+  The competition provides a publicly available dataset all algorithms have to classify to facilitate a standard evaluation between contending algorithms.
+  A workshop is also organized to share results and discuss the strategies of the most accurate and innovative algorithms each year.
+
+  \item[VGG-Network]
+  A deep convolutional network that scored top results in ImageNet Challenge 2014 \cite{Simonyan2014}.
+  It was designed and trained by the Visual Geometry Group in University of Oxford with the goal of evaluating the performance of networks with increasing depth.
+  The networks achieved best results in between 16 and 19 weight layers with an architecture of convolutional filters with a very small perceptive field ($3\times3$, the smallest that can capture notions of left/right, up/down and center).
+
+  \item[Deep learning framework]
+  A deep learning framework is a piece of software that aims to provide a set of tools to design deep neural networks.
+  They effectively separate the implementation of the network from its model.
+  This has proved crucial for sharing trained models among researchers \cite{Jia2014}, helping the enthusiasm for deep neural networks.
 \end{description}
 
 
@@ -35,7 +76,7 @@ Here I give non-exhaustive explanations for general concepts that I find useful 
   \item[Multi-layer perceptron]
   It's a type of feed-forward neural network composed of several layers where neurons of one layer are fully connected with the next one. These neural networks are normally used to classify different inputs.
 
-  \item[Convolutional Neural Networks] Also known as CNNs or ConvNets, they are feed-forward neural networks where neurons process regions of the visual input. They were inspired by cat's and responsible of one the major breakthroughs in image recognition.
+  \item[Convolutional Neural Networks] Also known as CNNs or ConvNets, they are feed-forward neural networks where neurons process regions of the visual input. They were inspired by cat's visual ventral stream \todo{cite} and responsible of one the major breakthroughs in image recognition. They are able to learn kernels that match the desired task through a feature learning process.
 \end{description}
 
 
