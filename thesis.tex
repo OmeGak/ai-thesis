@@ -56,7 +56,7 @@
 	colortheme=bluemagenta,%
 	bibsys=biber,%
 	bibfile=thesis,%
-	bibstyle=alphabetic,%
+	bibstyle=numeric,%
 ]{cleanthesis}
 \usepackage{todonotes}
 
@@ -121,10 +121,10 @@
 % --------------------------
 % Back matter
 % --------------------------
-{%
+{
 \setstretch{1.1}
 \renewcommand{\bibfont}{\normalfont\small}
-\setlength{\biblabelsep}{0pt}
+% \setlength{\biblabelsep}{0pt}
 \setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
 \printbibliography[nottype=online]
 \printbibliography[heading=subbibliography,title={Webseiten},type=online,prefixnumbers={@}]
