@@ -1,7 +1,8 @@
 % **************************************************
 % Document Class Definition
 % **************************************************
-\documentclass[%
+
+\documentclass[
 	paper=A4,					% paper size --> A4 is default in Germany
 	twoside=true,				% onesite or twoside printing
 	openright,					% doublepage cleaning ends up right side
@@ -14,24 +15,26 @@
 	titlepage=on,				% own page for each title page
 	captions=tableabove,		% display table captions above the float env
 	draft=false,				% value for draft version
-]{scrreprt}%
+]{scrreprt}
+
 
 % **************************************************
 % Debug LaTeX Information
 % **************************************************
+
 %\listfiles
+
 
 % **************************************************
 % Information and Commands for Reuse
 % **************************************************
+
 \newcommand{\thesisTitle}{Form and Content in Neural Networks}
 \newcommand{\thesisName}{Alejandro Avil\'es}
 \newcommand{\thesisSubject}{Unconventional Applications of Deep Learning}
 \newcommand{\thesisDate}{June 11, 2016}
 \newcommand{\thesisVersion}{My First Draft}
-
 \newcommand{\thesisFirstSupervisor}{Fernando Berzal}
-
 \newcommand{\thesisUniversity}{\protect{University of Granada}}
 \newcommand{\thesisUniversityDepartment}{Department of Computer Science and Artificial Intelligence}
 \newcommand{\thesisUniversityInstitute}{Higher Technical School of Information and Telecommunication Engineering}
@@ -41,9 +44,11 @@
 \newcommand{\thesisUniversityStreetAddress}{Periodista Daniel Saucedo Aranda Street}
 \newcommand{\thesisUniversityPostalCode}{18014}
 
+
 % **************************************************
 % Load and Configure Packages
 % **************************************************
+
 \usepackage[utf8]{inputenc}		% defines file's character encoding
 \usepackage[english]{babel} % babel system, adjust the language of the content
 \usepackage[					% clean thesis style
@@ -76,59 +81,59 @@
 % **************************************************
 % Document CONTENT
 % **************************************************
+
 \begin{document}
 
-% --------------------------
-% rename document parts
-% --------------------------
-%\renewcaptionname{ngerman}{\figurename}{Abb.}
-%\renewcaptionname{ngerman}{\tablename}{Tab.}
+% Rename document parts
 \renewcaptionname{english}{\figurename}{Fig.}
 \renewcaptionname{english}{\tablename}{Tab.}
 
-% --------------------------
-% Front matter
-% --------------------------
-\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
-\pagestyle{empty}				% no header or footers
-\input{content/titlepages}		% INCLUDE: all titlepages
+
+% -- Front matter --------------------------------------------------------------
+
+% Roman page numbers and no headers/footers
+\pagenumbering{roman}
+\pagestyle{empty}
+\input{content/titlepages}
 \cleardoublepage
 
-\pagestyle{plain}				% display just page numbers
-\input{content/abstract}		% INCLUDE: the abstracts (english and german)
-\cleardoublepage
-%
-\input{content/acknowledgement} % INCLUDE: acknowledgement
-\cleardoublepage
-%
-\setcounter{tocdepth}{2}		% define depth of toc
-\tableofcontents				% display table of contents
+% Just page numbers
+\pagestyle{plain}
+\input{content/abstract}
 \cleardoublepage
 
-% --------------------------
-% Body matter
-% --------------------------
-\pagenumbering{arabic}			% arabic page numbering
-\setcounter{page}{1}			% set page counter
-\pagestyle{maincontentstyle} 	% fancy header and footer
-
-\input{content/chapter-introduction} % INCLUDE: introduction
-\input{content/chapter-theory} % INCLUDE: theory
-\input{content/chapter-related-work} % INCLUDE: related work
-\input{content/chapter-system}	% INCLUDE: system
-\input{content/chapter-conclusion} % INCLUDE: conclusion
+\input{content/acknowledgement}
 \cleardoublepage
 
-% --------------------------
-% Back matter
-% --------------------------
+\setcounter{tocdepth}{2}
+\tableofcontents
+\cleardoublepage
+
+
+% -- Body matter ---------------------------------------------------------------
+
+% Arabic page numbers and fancy header/footer
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagestyle{maincontentstyle}
+
+\input{content/chapter-introduction}
+\input{content/chapter-theory}
+\input{content/chapter-related-work}
+\input{content/chapter-system}
+\input{content/chapter-conclusion}
+\cleardoublepage
+
+
+% -- Back matter ---------------------------------------------------------------
+
 {
-\setstretch{1.1}
-\renewcommand{\bibfont}{\normalfont\small}
-% \setlength{\biblabelsep}{0pt}
-\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
-\printbibliography[nottype=image]
-\printbibliography[heading=subbibliography,title={Images},type=image,prefixnumbers={!}]
+	\setstretch{1.1}
+	\renewcommand{\bibfont}{\normalfont\small}
+	% \setlength{\biblabelsep}{0pt}
+	\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
+	\printbibliography[nottype=image]
+	\printbibliography[heading=subbibliography,title={Images},type=image,prefixnumbers={!}]
 }
 \cleardoublepage
 
