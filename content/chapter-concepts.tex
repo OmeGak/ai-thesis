@@ -1,66 +1,21 @@
 % !TEX root = ../thesis.tex
 
-\chapter{Concepts}
+\chapter{Theory}
 \label{sec:concepts}
 
 % \cleanchapterquote{Users do not care about what is inside the box, as long as the box does what they need done.}{Jef Raskin}{about Human Computer Interfaces}
 
-Here I give non-exhaustive explanations for general concepts that I find useful to understand related work.
+In this chapter I briefly cover all concepts necessary to fully understand the main contribution of separation of style and content in the field of Neural Networks.
+The concepts, after this introduction, will be built bottom-up, meaning that a sequential read should guide the reader logically from question to answer while giving as much insight will be needed to move on and just enough context to understand the raison d'être of the current concept.
+The idea is for anybody with basic knowledge in Mathematics and Computing to understand this manuscript from beginning to end.
 
-\begin{description}
+Having said so, what is an artificial neural network?
+That is a very broad question.
 
-  \item[Perceptual quality]
-  A user-oriented metric used for evaluating picture quality.
-  It is usually evaluated by subjective tests with standard procedures run on several viewers. \cite{Lin2011}
-
-  \item[Overfitting]
-  TODO
-  \todo[inline]{}
-
-  \item[Perceptron]
-  A binary classifier regardless of how it is implemented. It may very well be just a function or a whole deep neural network.
-
-  \item[Pooling layer]
-  A method for reducing spatial size of the representation of the input.
-
-  \item[Weight layer]
-  TODO
-  \todo[inline]{}
-
-  \item[Ground Truth]
-  TODO
-  \todo[inline]{}
-
-  \item[Back-propagation]
-  TODO
-  \todo[inline]{}
-
-  \item[Convolution]
-  \todo{More info}In image processing, convolution is a process that transforms an image.
-
-  \item[Feature learning]
-  Finding kernel that produce the desired feature maps is very difficult since it greatly varies depending on the task.
-  In CNN, feature learning is the step in which the kernel gets increasingly better at the task of filtering an image or a feature map coming from a previous layer.
-
-  \item[ImageNet]
-  A large-scale, comprehensive and diverse database of accurately human-annotated images organized in a semantic hierarchy \cite{Deng2009} and it has become one of the main datasets in the field of object recognition.
-  It it, each noun in English, coming from the lexical database WordNet \cite{Wilkniss1998}, is associated with hundreds of clean high-resolution images.
-  These images depict different representations of the concepts or different perspectives and lighting conditions of the objects.
-  The hierarchical structure of the database makes it possible to interlink concepts, allowing algorithms to recognizing several concepts at the same time (dog/mammal/animal).
-  Its creation was motivated by the need to organize the huge amount of image data available on the Internet and make it available and useful to researchers of computer vision.
-
-  \item[ImageNet Large-Scale Visual Recognition Challenge]
-  The de-facto benchmark for large-scale object recognition algorithms \cite{Russakovsky2015}.
-  It is run as a yearly competition since 2010 and has been one of the accelerators of the improvement of object recognition algorithms.
-  The competition provides a publicly available dataset all algorithms have to classify to facilitate a standard evaluation between contending algorithms.
-  A workshop is also organized to share results and discuss the strategies of the most accurate and innovative algorithms each year.
-
-  \item[Deep learning framework]
-  A deep learning framework is a piece of software that aims to provide a set of tools to design deep neural networks.
-  They effectively separate the implementation of the network from its model.
-  This has proved crucial for sharing trained models among researchers, helping the enthusiasm for deep neural networks.
-  Some of the most popular ones currently are: TensorFlow, developed by Google \cite{Abadi2015}; Theano, developed by l’Université de Montréal \cite{Bergstra2010}; Caffe, developed by the Berkeley Vision and Learning Center \cite{Jia2014}; or Torch, supported by Facebook and Nvidia \cite{Collobert2002}.
-\end{description}
+\todo[inline]{Polish introduction}
+\todo[inline]{Motivations for machine learning}
+\todo[inline]{Artificial Neural Networks}
+\todo[inline]{Ground Truth??}
 
 
 % ------------------------------------------------------------------------------
@@ -71,20 +26,48 @@ Here I give non-exhaustive explanations for general concepts that I find useful 
 \begin{description}
   \item[Feed-forward Neural Networks]
   The simplest type of artificial neural network, characterized by its connections not forming cycles and thus the data always flowing in one direction: from input to hidden layers to output.
-
-  \item[Multi-layer perceptron]
-  It's a type of feed-forward neural network composed of several layers where neurons of one layer are fully connected with the next one.
-  These neural networks are normally used to classify different inputs.
 \end{description}
 
 
 % ------------------------------------------------------------------------------
 
+\section{Perceptron}
+\label{sec:Perceptron}
+A perceptron is a type of cell that performs binary classification.
+
+A binary classifier regardless of how it is implemented. It may very well be just a function or a whole deep neural network.
+
+Weight
+Also called learnable parameter or just parameter.
+Coming from neuroscience literature, it refers to how much importance each one of the different input connections of a neuron has in the activation function.
+\todo[inline]
+
+\todo[inline]{Overfitting}
+
+% ------------------------------------------------------------------------------
+
+\section{Multilayer Perceptron}
+\label{sec:concepts:mlp}
+A multilayer perceptron (MLP) is a type of feed-forward neural network composed of several layers where neurons of one layer are fully connected with the next one.
+These neural networks are normally used to classify different inputs.
+
+The limitations of the perceptron were mathematically proved \citet{Minsky1969} in 1969 and they claimed perceptrons with multiple layers would not be capable of solving not-linearly separable classes.
+Discouraged by these claims little to none research was done in the field of Neural Networks until backpropagation was developed by \citet{Werbos1974}, rediscovered by \citet{Parker1985}, popularized by \citet{Rumelhart1988} and MLP were proved to be universal approximators \cite{Hornik1989,Ruck1990} in 1989.
+
+
+\subsection{Backpropagation}
+\label{sec:concepts:mlp:backpropagation}
+\todo[inline]
+
+
+% ------------------------------------------------------------------------------
+
 \section{Convolutional Neural Networks}
-\label{sec:concepts:convolutional-neural-networks}
-Convolutional Neural Networks, also known as CNNs or ConvNets, are feed-forward multi-layer neural networks inspired by the cat's visual ventral stream \cite{Hubel1968,Lawrence1997} and are responsible for a major breakthroughs in image recognition \cite{LeCun1995}.
-They are able to learn patterns in images from a training set through back-propagation and present built-in resilience towards translation and distortion variances.
-Such resilience minimizes pre-processing tasks both for training and classification and greatly reduces human supervision, making CNNs the currently preferred system for image recognition.
+\label{sec:concepts:convnets}
+Convolutional Neural Networks, also known as CNNs or ConvNets, are feed-forward multi-layer neural networks inspired by cats' and monkeys' visual ventral stream \cite{Hubel1968,Lawrence1997} and are responsible for a major breakthroughs in image recognition \cite{LeCun1995}.
+Before and contemporaneous to LeCun's LeNet \cite{LeCun1998} other networks like Fukushima's Neocognitron \cite{Fukushima1980} or Riesenhuber \& Poggio's HMAX \cite{Riesenhuber1999} were also inspired in the visual cortex, but it was the former that established the fundamentals for CNNs.
+They are able to learn patterns in images from a training set through back-propagation and present built-in resilience towards translation and distortion variances in the input.
+Such resilience minimizes pre-processing tasks both for training and classification and greatly reduces human supervision, making CNNs the currently preferred system for image recognition \cite{Visin2015}.
 
 Although multi-layer perceptron are able to perform image recognition, they can only handle images of very small resolution due to the architectural limitations of fully connected layers \cite{ZHANG1999}.
 Fully connected layers scale poorly, since neurons of the first hidden layer will process the whole image and will need to store weights for every color channel of every pixel.
@@ -95,48 +78,113 @@ Worse than that, treating pixels individually as described, regardless of their 
 That means that to handle variations in the images the network will end up with the same weights being stored in different neurons, proving multi-layer perceptron clearly inefficient for image recognition.
 These problems are addressed by CNN architectural features \cite{LeCun1998}: 1) local receptive fields, 2) shared weights, and 3) subsampling.
 
-\textbf{Local receptive fields} means taking into account spatial correlation, each neuron processing a small region of the image, the perceptive field, and it allows them to extract the most basic visual features such as edges, end-points or corners.
-This architecture allows neurons in subsequent layers to, from those elementary visual features, extract progressively higher-order features like shapes, textures, faces or objects.
+
+\subsection{Properties}
+\label{sub:concepts:convnets:properties}
+
+\paragraph{Local receptive fields}
+The term \emph{receptive field} is borrowed from the literature of neuroscience and it refers to an area of the body surface that trigger a neurological response in the presence of stimuli \cite{Sherrington1906,Alonso2008}.
+In the context of convolution networks, receptive field refers to a region of the visual input, represented by an image, that is connected with one or several neurons that will react to it and is commonly called \emph{filter}.
+Using local receptive fields means that neurons in the network will not react to the whole image but to a small region of it instead.
+This ensures neurons will extract first the most basic visual features such as edges, end-points or corners;
+In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces or objects.
+Such architecture allows effectively takes into account the spatial correlation existing in images.
 Within a layer several neurons performing different feature detections can can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:concepts:conv-layer-1}.
 
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=0.5\textwidth]{gfx/conv-layer-1}
+    \includegraphics[width=0.6\textwidth]{gfx/conv-layer-1}
   \end{center}
   \caption{Stack of neurons applying different feature detections within a convolutional layer on the same perceptual region \cite{Aphex342015}.}
   \label{fig:sec:concepts:conv-layer-1}
 \end{figure}
 
+\paragraph{Shared weights}
 Layers in CNNs are organized in several slices, each of them containing neurons that detect the same feature but in different regions of the image and each slice detecting different features.
 This operation is equivalent to a convolution in image processing, a sliding window that applies a transformation the original image, and that is where CNNs receive their name.
-In this analogy, the kernel of the convolution is the filter applied by the slice over the input, represented by \textbf{weights shared} by all its neurons, being this what makes feature recognition robust against translations or distortions in the image.
-The output of the convolution is referred to as \emph{feature map}, and all \emph{feature maps} produced by a convolutional layer together become the input for the next layer.
-This is depicted in Figure~\ref{fig:sec:concepts:conv-layer-2}.
-
-\begin{figure}[htb]
-  \includegraphics[width=\textwidth]{gfx/conv-layer-2}
-  \caption{Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}. On the left there is the representation of an image of ${32}\times{32}$ pixels with $3$ channels (\emph{RGB}). Neurons apply a filter of size ${5}\times{5}\times{3}$ in particular region of the image. Neurons of the same color belong to the same slice apply the same filter in different regions of the image and produce a \emph{feature map}. All \emph{feature maps} combined become the \"new image\" of size ${28}\times{28}\times{N}$, being $N$ the number of slices in the layer, that gets fed to the next layer.}
-  \label{fig:sec:concepts:conv-layer-2}
-\end{figure}
-
-In the process of detecting higher-order features throughout subsequent layers of the network the exact absolute position of detected features in \emph{feature maps} is pretty much irrelevant compared to the relative position between them.
-For instance, the pattern that describes the number $7$ is an endpoint in upper left area of a horizontal segment, a corner in the upper right area and an endpoint at the bottom of a vertical segment.
-Still, small variations in the input may cause the pattern not to be detected because the features will not completely match the filter.
-To make the network more robust against variations the sensitivity of the convolutional layers has to be reduced.
-This is effectively accomplished by reducing the resolution of the feature maps through \textbf{subsampling} with pooling layers.
-Pooling layers
-
-
-% It's important to note that all the weights in the network are learnt through back-propagation.
-
+The sliding window is called kernel, filter or mask, and it is an image transformation matrix, usually small, that performs the weighted sum over a set of pixels of the original image, as shown in Figure~\ref{fig:sec:concepts:kernel}
+In this analogy, the kernel of the convolution is the filter applied by the slice over the input, represented by \emph{weights shared} by all its neurons, being this what makes feature recognition robust against translations or distortions in the image.
+The output of the convolution is referred to as \emph{feature map}, and all feature maps produced by a convolutional layer together become the input for the next layer, usually called \emph{volume} since it has height, width and depth.
+The height and width are proportional to the size of the original image and depth equal to the amount of slices in the layer.
+Such architecture is depicted in Figure~\ref{fig:sec:concepts:conv-layer-2}.
 
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=\textwidth]{gfx/conv-layer-2}
+    \includegraphics[width=0.5\textwidth]{gfx/kernel}
   \end{center}
-  \caption{}
-  \label{fig:sec:concepts:conv-net}
+  \caption{Convolutional kernel \cite{Apple}. The kernel gets centered on the source pixel and the convolution takes into account nearby pixels transforming the source pixel value. The convolution operation is a weighted sum of the source pixel with its nearby pixels. In this case:\\
+    $(0\cdot4)+(0\cdot0)+(0\cdot0)
+     +(0\cdot0)+(1\cdot0)+(1\cdot0)
+     +(0\cdot0)+(1\cdot0)+(2\cdot-4) = -8$
+  }
+  \label{fig:sec:concepts:kernel}
 \end{figure}
+
+\begin{figure}[htb]
+  \includegraphics[width=\textwidth]{gfx/conv-layer-2}
+  \caption{Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}. On the left there is the representation of an image of ${32}\times{32}$ pixels with $3$ channels (\emph{RGB}). Neurons apply a filter of size ${5}\times{5}\times{3}$ in particular region of the image. Neurons of the same color belong to the same slice apply the same filter in different regions of the image and produce a feature map. All feature maps combined become the "new image" of size ${28}\times{28}\times{N}$, being $N$ the number of slices in the layer, that gets fed to the next layer.}
+  \label{fig:sec:concepts:conv-layer-2}
+\end{figure}
+
+\paragraph{Subsampling}
+In the process of detecting higher-order features throughout subsequent layers of the network the exact absolute position of detected features in feature maps is pretty much irrelevant compared to the relative position between them.
+For instance, the pattern that describes the number $7$ is an endpoint in upper left area of a horizontal segment, a corner in the upper right area and an endpoint at the bottom of a vertical segment.
+Still, small variations in the input may cause the pattern not to be detected because the features will not completely match the filter.
+To make the network more robust against variations the sensitivity of the convolutional layers has to be reduced.
+This is effectively accomplished by reducing the resolution of the feature maps through non-linear \emph{subsampling} with pooling layers.
+$Max$ is normally used as the non-linear function, giving the name of the subsampling operation \emph{max-pooling}, but it is not limited to it, as we will see in Chapter~\ref{sec:system}.
+A pooling layer takes as input a volume of feature maps and, usually, has a non-overlapping filter of size ${2}\times{2}$ that gets applied on each one of the feature maps individually, as can be appreciated in Figure~\ref{fig:sec:concepts:pooling}.
+More specifically, the filter summarizes the feature map by performing max-pooling over its ${2}\times{2}$ regions and producing a single value for each, being this a size reduction of $75\%$.
+It is important to note that this reduction applies only to the height and width of the original input since the depth refers to the amount of feature maps and these are preserved.
+
+\begin{figure}
+  \begin{subfigure}[b]{0.35\textwidth}
+    \includegraphics[width=\textwidth]{gfx/pool}
+    \captionsetup{justification=centering}
+    \caption{General pooling}
+    \label{fig:sec:concepts:pooling:general}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.55\textwidth}
+    \includegraphics[width=\textwidth]{gfx/maxpool}
+    \captionsetup{justification=centering}
+    \caption{Max-pooling}
+    \label{fig:sec:concepts:pooling:max}
+  \end{subfigure}
+  \caption{Overview of a pooling layer. On the left, the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}. On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.}
+  \label{fig:sec:concepts:pooling}
+\end{figure}
+
+
+\subsection{Architecture}
+\label{sub:concepts:convnets:achitecture}
+
+While discussing the properties of ConvNets I have introduced two of their building blocks: convolutional layers and pooling layers.
+These alone are not enough to use ConvNets for object recognition tasks since feature extraction is not the same as classification.
+Let us have a look at how they fit in the big picture and the rest of the building blocks.
+
+In Figure~\ref{fig:sec:concepts:convnet} I present the typical configuration of a complete convolutional network.
+We can see convolutional layers are alternated with pooling layers and ultimately fed into a fully connected network.
+Whereas convolutional layers typically increase the amount of feature maps increasing the richness of intermediate representations, pooling layers reduce their spatial resolution keeping the amount of parameters low and thus limiting overfitting.
+After several convolutional-pooling layers, the set of all feature maps, a highly abstracted representation the original image at that point, gets fed into fully connected layers, usually in the shape of a multilayer perceptron.
+It is within the fully connected network that the classification takes place.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=\textwidth]{gfx/conv-network}
+  \end{center}
+  \caption{LeNet typical architecture \cite{LaboratoiredInformatiquedesSystemesAdaptatifs2010}. On the left there is an image (input layer). The image gets processed by a convolutional layer that extracts 4 elementary features producing 4 feature maps (S1). A pooling layer reduces the dimensionality while maintaining the same amount of feature maps (C1). Next, another convolutional layer extracts 6 higher-order features from the 4 feature maps (C2). Again, another pooling layer reduces the resolution of the 6 feature maps (S2). Finally, a fully-connected network takes the 6 feature maps and performs classification over them.}
+  \label{fig:sec:concepts:convnet}
+\end{figure}
+
+Additionally to these fundamental layers, normalization layers have been used as well.
+These, however are \todo{cite}{falling out of use} since their contribution to the final result is close to none and they increase the complexity of the network.
+ReLU \cite{Krizhevsky2012,Nair2010}
+
+% It's important to note that all the weights in the network are learnt through back-propagation.
+
+% One last element essential in convolutional networks is the loss layer.
+% This layer calculates the error of the classifications
 
 
 \todo[inline]{TODO}
@@ -146,39 +194,27 @@ Pooling layers reduce the dimensionality of feature maps.
 ReLU layers \todo{?}?.
 Fully connected layers perform classification.
 
-\subsection{Layers}
-\label{sub:concepts:convolutional-neural-networks:layers}
+\paragraph{Feature learning}
+Finding kernel that produce the desired feature maps is very difficult since it greatly varies depending on the task.
+In CNN, feature learning is the step in which the kernel gets increasingly better at the task of filtering an image or a feature map coming from a previous layer.
+\todo[inline]
 
-\makeatletter
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -0.2ex}%
-  {0.01pt}%
-  {\raggedsection\normalfont\sectfont\nobreak\size@paragraph}%
-}
-\makeatother
+\subsection{Hyperparameters}
+\label{sub:concepts:hyperparameters}
 
-
-For easier reference in Chapter \ref{sec:system}, here's a list of useful concepts in CNNs:
-
-\begin{description}
+It's worth noting that filters are always applied over the whole depth so that a ${W}\times{H}$ filter
 
 
-  \item[Kernel]
-  A kernel, also called filter or mask, is an image transformation matrix, usually small. The matrix gets applied convolutionally
+% ------------------------------------------------------------------------------
 
-  \item[Receptive field]
-  The size of the filter.
-
-  \item[Convolutional filter]
-  Also called perceptive field
-  TODO
-  \todo[inline]{}
-\end{description}
-
-In image processing it can be understood as a sliding window of ${N}\times{N}$ pixels, the filter, that gets applied to every single pixel of the original image and produces a new image (often called feature map) that captures either edges, straight lines, etc.
-For the convolution to capture features of a pixel the filter has to take into account neighboring pixels.
+\section{Convolutional Network Visualization}
+\label{sec:concepts:netvis}
 
 
+% ------------------------------------------------------------------------------
+
+\section{Adversarial Networks}
+\label{sec:concepts:adversarialnet}
 
 
 % ------------------------------------------------------------------------------
