@@ -1,7 +1,7 @@
 % !TEX root = ../thesis.tex
 
 \chapter{Theory}
-\label{sec:concepts}
+\label{sec:theory}
 
 % \cleanchapterquote{Users do not care about what is inside the box, as long as the box does what they need done.}{Jef Raskin}{about Human Computer Interfaces}
 
@@ -47,7 +47,7 @@ Coming from neuroscience literature, it refers to how much importance each one o
 % ------------------------------------------------------------------------------
 
 \section{Multilayer Perceptron}
-\label{sec:concepts:mlp}
+\label{sec:theory:mlp}
 A multilayer perceptron (MLP) is a type of feed-forward neural network composed of several layers where neurons of one layer are fully connected with the next one.
 These neural networks are normally used to classify different inputs.
 
@@ -56,14 +56,14 @@ Discouraged by these claims little to none research was done in the field of Neu
 
 
 \subsection{Backpropagation}
-\label{sec:concepts:mlp:backpropagation}
+\label{sec:theory:mlp:backpropagation}
 \todo[inline]
 
 
 % ------------------------------------------------------------------------------
 
 \section{Convolutional Neural Networks}
-\label{sec:concepts:convnets}
+\label{sec:theory:convnets}
 Convolutional Neural Networks, also known as CNNs or ConvNets, are feed-forward multi-layer neural networks inspired by cats' and monkeys' visual ventral stream \cite{Hubel1968,Lawrence1997} and are responsible for a major breakthroughs in image recognition \cite{LeCun1995}.
 Before and contemporaneous to LeCun's LeNet \cite{LeCun1998} other networks like Fukushima's Neocognitron \cite{Fukushima1980} or Riesenhuber \& Poggio's HMAX \cite{Riesenhuber1999} were also inspired in the visual cortex, but it was the former that established the fundamentals for CNNs.
 They are able to learn patterns in images from a training set through back-propagation and present built-in resilience towards translation and distortion variances in the input.
@@ -89,24 +89,24 @@ Using local receptive fields means that neurons in the network will not react to
 This ensures neurons will extract first the most basic visual features such as edges, end-points or corners;
 In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces or objects.
 Such architecture allows effectively takes into account the spatial correlation existing in images.
-Within a layer several neurons performing different feature detections can can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:concepts:conv-layer-1}.
+Within a layer several neurons performing different feature detections can can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:conv-layer-1}.
 
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[width=0.6\textwidth]{gfx/conv-layer-1}
   \end{center}
   \caption{Stack of neurons applying different feature detections within a convolutional layer on the same perceptual region \cite{Aphex342015}.}
-  \label{fig:sec:concepts:conv-layer-1}
+  \label{fig:sec:theory:conv-layer-1}
 \end{figure}
 
 \paragraph{Shared weights}
 Layers in CNNs are organized in several slices, each of them containing neurons that detect the same feature but in different regions of the image and each slice detecting different features.
 This operation is equivalent to a convolution in image processing, a sliding window that applies a transformation the original image, and that is where CNNs receive their name.
-The sliding window is called kernel, filter or mask, and it is an image transformation matrix, usually small, that performs the weighted sum over a set of pixels of the original image, as shown in Figure~\ref{fig:sec:concepts:kernel}
+The sliding window is called kernel, filter or mask, and it is an image transformation matrix, usually small, that performs the weighted sum over a set of pixels of the original image, as shown in Figure~\ref{fig:sec:theory:kernel}
 In this analogy, the kernel of the convolution is the filter applied by the slice over the input, represented by \emph{weights shared} by all its neurons, being this what makes feature recognition robust against translations or distortions in the image.
 The output of the convolution is referred to as \emph{feature map}, and all feature maps produced by a convolutional layer together become the input for the next layer, usually called \emph{volume} since it has height, width and depth.
 The height and width are proportional to the size of the original image and depth equal to the amount of slices in the layer.
-Such architecture is depicted in Figure~\ref{fig:sec:concepts:conv-layer-2}.
+Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
 
 \begin{figure}[htb]
   \begin{center}
@@ -117,13 +117,13 @@ Such architecture is depicted in Figure~\ref{fig:sec:concepts:conv-layer-2}.
      +(0\cdot0)+(1\cdot0)+(1\cdot0)
      +(0\cdot0)+(1\cdot0)+(2\cdot-4) = -8$
   }
-  \label{fig:sec:concepts:kernel}
+  \label{fig:sec:theory:kernel}
 \end{figure}
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/conv-layer-2}
   \caption{Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}. On the left there is the representation of an image of ${32}\times{32}$ pixels with $3$ channels (\emph{RGB}). Neurons apply a filter of size ${5}\times{5}\times{3}$ in particular region of the image. Neurons of the same color belong to the same slice apply the same filter in different regions of the image and produce a feature map. All feature maps combined become the "new image" of size ${28}\times{28}\times{N}$, being $N$ the number of slices in the layer, that gets fed to the next layer.}
-  \label{fig:sec:concepts:conv-layer-2}
+  \label{fig:sec:theory:conv-layer-2}
 \end{figure}
 
 \paragraph{Subsampling}
@@ -133,7 +133,7 @@ Still, small variations in the input may cause the pattern not to be detected be
 To make the network more robust against variations the sensitivity of the convolutional layers has to be reduced.
 This is effectively accomplished by reducing the resolution of the feature maps through non-linear \emph{subsampling} with pooling layers.
 $Max$ is normally used as the non-linear function, giving the name of the subsampling operation \emph{max-pooling}, but it is not limited to it, as we will see in Chapter~\ref{sec:system}.
-A pooling layer takes as input a volume of feature maps and, usually, has a non-overlapping filter of size ${2}\times{2}$ that gets applied on each one of the feature maps individually, as can be appreciated in Figure~\ref{fig:sec:concepts:pooling}.
+A pooling layer takes as input a volume of feature maps and, usually, has a non-overlapping filter of size ${2}\times{2}$ that gets applied on each one of the feature maps individually, as can be appreciated in Figure~\ref{fig:sec:theory:pooling}.
 More specifically, the filter summarizes the feature map by performing max-pooling over its ${2}\times{2}$ regions and producing a single value for each, being this a size reduction of $75\%$.
 It is important to note that this reduction applies only to the height and width of the original input since the depth refers to the amount of feature maps and these are preserved.
 
@@ -142,17 +142,17 @@ It is important to note that this reduction applies only to the height and width
     \includegraphics[width=\textwidth]{gfx/pool}
     \captionsetup{justification=centering}
     \caption{General pooling}
-    \label{fig:sec:concepts:pooling:general}
+    \label{fig:sec:theory:pooling:general}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.55\textwidth}
     \includegraphics[width=\textwidth]{gfx/maxpool}
     \captionsetup{justification=centering}
     \caption{Max-pooling}
-    \label{fig:sec:concepts:pooling:max}
+    \label{fig:sec:theory:pooling:max}
   \end{subfigure}
   \caption{Overview of a pooling layer. On the left, the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}. On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.}
-  \label{fig:sec:concepts:pooling}
+  \label{fig:sec:theory:pooling}
 \end{figure}
 
 
@@ -163,7 +163,7 @@ While discussing the properties of ConvNets I have introduced two of their build
 These alone are not enough to use ConvNets for object recognition tasks since feature extraction is not the same as classification.
 Let us have a look at how they fit in the big picture and the rest of the building blocks.
 
-In Figure~\ref{fig:sec:concepts:convnet} I present the typical configuration of a complete convolutional network.
+In Figure~\ref{fig:sec:theory:convnet} I present the typical configuration of a complete convolutional network.
 We can see convolutional layers are alternated with pooling layers and ultimately fed into a fully connected network.
 Whereas convolutional layers typically increase the amount of feature maps increasing the richness of intermediate representations, pooling layers reduce their spatial resolution keeping the amount of parameters low and thus limiting overfitting.
 After several convolutional-pooling layers, the set of all feature maps, a highly abstracted representation the original image at that point, gets fed into fully connected layers, usually in the shape of a multilayer perceptron.
@@ -174,7 +174,7 @@ It is within the fully connected network that the classification takes place.
     \includegraphics[width=\textwidth]{gfx/conv-network}
   \end{center}
   \caption{LeNet typical architecture \cite{LaboratoiredInformatiquedesSystemesAdaptatifs2010}. On the left there is an image (input layer). The image gets processed by a convolutional layer that extracts 4 elementary features producing 4 feature maps (S1). A pooling layer reduces the dimensionality while maintaining the same amount of feature maps (C1). Next, another convolutional layer extracts 6 higher-order features from the 4 feature maps (C2). Again, another pooling layer reduces the resolution of the 6 feature maps (S2). Finally, a fully-connected network takes the 6 feature maps and performs classification over them.}
-  \label{fig:sec:concepts:convnet}
+  \label{fig:sec:theory:convnet}
 \end{figure}
 
 Additionally to these fundamental layers, normalization layers have been used as well.
@@ -208,13 +208,13 @@ It's worth noting that filters are always applied over the whole depth so that a
 % ------------------------------------------------------------------------------
 
 \section{Convolutional Network Visualization}
-\label{sec:concepts:netvis}
+\label{sec:theory:netvis}
 
 
 % ------------------------------------------------------------------------------
 
 \section{Adversarial Networks}
-\label{sec:concepts:adversarialnet}
+\label{sec:theory:adversarialnet}
 
 
 % ------------------------------------------------------------------------------
