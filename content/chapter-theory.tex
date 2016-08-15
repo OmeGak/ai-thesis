@@ -3,36 +3,110 @@
 \chapter{Theory}
 \label{sec:theory}
 
-% \cleanchapterquote{Users do not care about what is inside the box, as long as the box does what they need done.}{Jef Raskin}{about Human Computer Interfaces}
+\cleanchapterquote{At the end of the century one will be able to speak of machines thinking without expecting to be contradicted.}{Alan Turing}{(Computing Machinery and Intelligence (1950))}
 
-In this chapter I briefly cover all concepts necessary to fully understand the main contribution of separation of style and content in the field of Neural Networks.
-The concepts, after this introduction, will be built bottom-up, meaning that a sequential read should guide the reader logically from question to answer while giving as much insight will be needed to move on and just enough context to understand the raison d'être of the current concept.
-The idea is for anybody with basic knowledge in Mathematics and Computing to understand this manuscript from beginning to end.
+In this chapter I cover the basic concepts of Neural Networks that will be used later on when separation of style and content is discussed in more detail.
+My intention is to allow anybody with basic knowledge in Mathematics and Computing to understand this manuscript from beginning to end.
 
-Having said so, what is an artificial neural network?
-That is a very broad question.
-
-\todo[inline]{Polish introduction}
-\todo[inline]{Motivations for machine learning}
-\todo[inline]{Artificial Neural Networks}
-\todo[inline]{Ground Truth??}
+The explanations will be developed from basic to complex so that a sequential read should guide the reader logically from question to answer while giving as much insight will be necessary to continue and just enough context to understand the raison d'être of the each concept.
 
 
 % ------------------------------------------------------------------------------
 
-\section{Types of Neural Networks}
-\label{sec:Types of Neural Networks}
+\section{Background}
+\label{sec:theory:background}
 
-\begin{description}
-  \item[Feed-forward Neural Networks]
-  The simplest type of artificial neural network, characterized by its connections not forming cycles and thus the data always flowing in one direction: from input to hidden layers to output.
-\end{description}
+Before diving into technical aspects, however, I believe it is worth stopping to first introduce the fields of this thesis: \emph{Neural Networks} and \emph{Deep Learning}.
+Neural Networks is an area of \emph{Machine Learning} very closely related with \emph{Cognitive Sciences} and Deep Learning is also an area of Machine Learning that typically uses neural networks, but let us go step by step.
+
+
+\subsection{Neural Networks}
+\label{sub:theory:background:neural-networks}
+
+We can describe the field of Machine Learning as the study that enables computers to resolve problems for which they have not been explicitly programmed for by using some learning mechanism \citet{Samuel1959}.
+When explicitly programming an algorithm to resolve a problem its complexity grows dramatically with that of the problem and the desired precision.
+A perfectly robust algorithm that follows this approach will require: 1) the programmer to understand the problem completely so that all variables can be taken into account; 2) a hardware powerful enough to handle all these variables; and 3) data with maximum precision.
+It is easy to see how one or more of these requirements will pose complications when the problem is complex enough.
+Driving a car is a complex enough problem to make Classic Computing incapable of solving it.
+Conversely, driving a car is a simple enough problem so that any person can do it.
+The human mind can handle the task because, although not having perfect senses nor 100\% understanding on the laws of physics, how the car works, how other drivers exactly behave and many other factors involved; is capable of dealing with partial information, uncertainty, imprecision and approximations after having learned from experience \cite{Zadeh1994}.
+Opposed to how Classic Computing tries to accurately model the world to solve problems, some fields of Machine Learning try to model how the human mind learns the complexity of the world to reason and act upon it.
+
+At this point it is clear how the study of the human mind plays an important role in Machine Learning.
+Cognitive Sciences is the field that studies the human mind and how it acquires understanding through experience and the senses.
+Modern Cognitive Sciences have their inception in the 1940s, when efforts were being made to understand the principles of the mind by representing their structures and processes instead of operating directly on them \cite{Thagard2008}.
+The studies quickly branched-off in 1943 when \citet{McCulloch1943}, inspired by biological neural networks, described the first mathematical model of an artificial neural network.
+The field Neural Networks, shorthand for \emph{Artificial Neural Networks} (ANNs), quickly grew in the 1950s when they started being implemented \cite{Farley1954,Rosenblatt1958} as approximation or classification methods.
+
+Since then, the field has evolved and expanded into a myriad of different methods that have maintained the purity with their biological counterparts in greater or lesser degree.
+Within the general framework, we can still talk of neurons, organized in \emph{layers}, implementing an \emph{activation function} and storing experience in \emph{weights} as depicted in Figure~\ref{fig:sec:theory:neurons}.
+An artificial neuron is a simple processing unit, forming networks typically organized in layers, whose input is the set of output of connected neurons from the previous layer and the process it performs is determined by the activation function.
+The activation function can be implemented either as a threshold to be reached for the neuron to send an output or simply as a transformation of any sort of the input.
+Lastly, experience in ANNs can be understood as connection strength between neurons in biological neural networks and this mechanism is implemented as a set of adaptive parameters, commonly called weights, that modifies the value of each input of the neuron \cite{Hinton1990}.
+
+\begin{figure}[htb]
+  \includegraphics[width=\textwidth]{gfx/neurons}
+  \caption{Biological Neuron vs Artificial Neuron \cite{Honorio2013}. AC) A biological neuron receives signals at the dendrites, the composition of the signals may or may not produce an excitation in the cell body based on experience, in which case a pulse will be transmitted down the axon and ultimately to other neurons' dendrites via terminal axon in a process called synapsis. BD) Similarly, artificial neuronal networks are organized in layers and synapsis occurs from layer to layer. An artificial neuron in the layer $Y$ receives one or more inputs $X$, representing dendrites, and result of an activation function $f(X)$ produces an output $y_i$, representing the axon, that gets passed to connected neurons in the subsequent layer. Weights represent connection strength between neurons and encode network experience.}
+  \label{fig:sec:theory:neurons}
+\end{figure}
+
+A crucial step in preparing an ANN for a specific task is refining its set of weights.
+That is what we refer to as training or supervised learning process.
+Supervised learning is a data-driven process that requires a labeled training set of examples of which we know their class (dog vs. cat).
+The process can be implemented in several ways but it generally boils down to defining some way to assess how far the prediction of the network is from an optimal solution, known as the \emph{loss function}, and the strategy that will propagate the error to refine the weights of the network.
+Eventually, after enough training examples and corrections, the weights of the network will have adapted to generalize the features of the training data and will be more or less able to correctly classify new incoming examples.
+
+The process can be seen as a teacher supervising the learning of a student.
+The ``teacher" (loss function + weight rectification strategy) knows the correct solution (label of the example) and it corrects the ``student" (the network) when its prediction is incorrect.
+An example of a completely wrong prediction would be the network having 100\% confidence of an image containing a dog when it clearly contains a cat.
+
+One of the most important aspects that determines the accuracy of the network when presented with new examples is the volume of data and the correctness of its labels.
+This becomes extremely important when trying to solve real-world problems like image recognition, where massive training sets are required to generalize networks for all concepts in a language under several different lighting conditions.
+Big enough volumes of data have not been available until recently, and even nowadays, complete and accurately labeled datasets are expensive or time consuming to handcraft as the task may be too large or require expert knowledge on the specific field.
+Approaches to work around this involved using partially labeled training datasets and pre-training the network first with unsupervised training where unlabeled examples with similar features are grouped together, then classified after the learning phase and finally used as additional training data \cite{Hinton2006}.
+This approach is called semi-supervised learning and is one of the achievements of Deep Learning, which I am discussing next.
+
+
+\subsection{Deep Learning}
+\label{sub:theory:background:deep-learning}
+
+Since 2006 the field of \emph{Deep Learning}, also called hierarchical learning, has appeared as a new area of Machine Learning research that brings it closer to its original goals: Artificial Intelligence \cite{Deng2014}.
+Deep Learning focuses its efforts on producing methods for learning hierarchical feature representations, different levels of abstraction where higher-level ones are defined from lower-level ones, to help making sense of data such as images, sound and text in real-world applications.
+
+One clear example of hierarchical representation is a spoken sentence.
+A spoken sentence, the higher-level concept, is composed of spoken words.
+A spoken word is made up of phonemes.
+A phoneme is a representation of a speech sound with an associated waveform.
+Making sense of speech in Deep Learning means first analyzing the waveform looking for phonemes, then trying to make up words from the phonemes found, and finally producing a grammatically correct and semantically meaningful sentence with those words.
+
+As already mentioned in Chapter~\ref{sec:intro}, this kind of pattern recognition did not perform well until recently.
+Traditional solutions employed shallow neural networks with simplistic models and limited representation power that could only be used to solve well-constrained problems like numerical approximations or binary classification.
+Speech recognition, contrarily, is a very loosely-constrained problem and that is also the case for any problem dealing with the richness of data such as human voice, natural language and natural images.
+
+Studies in human information processing mechanisms suggested the human brain uses deep neuronal architectures to extract complex patterns and build internal representations from rich sensory inputs.
+For instance, the human speech perception system in the brain is equipped with layered hierarchical structures that transforms the information from the acoustic level to the linguistic level \cite{Deng1999,Baker2009}.
+Training analogous deep architectures in artificial neural networks, \emph{deep neural networks} (DNNs), proved problematic from the beginning since classic learning algorithms tended to easily get trapped in poor local optima parameters.
+This phenomenon, unfortunately, worsened quickly the more layers the neural network presented, which is the case of DNNs.
+
+Efficient unsupervised learning algorithms that made use of the increasingly big datasets, available thanks to the widespread use of the Internet, were proposed to overcome the problems presented by local optima in classic learning algorithms \cite{LeCun2004,Hinton2006}, as previously discussed in Section~\ref{sub:theory:background:neural-networks}.
+They, however, were so computationally expensive for training deep neural networks, having millions of parameters to learn, that were not widely used until parallelizable variations were proposed in 2012 \cite{Dean2012,Chen2012}.
+These, alongside with powerful Graphic Processing Units (GPUs) becoming a commodity enabling the implementation of these algorithms marked the rapid expansion of Deep Learning in recent years.
+
+Deep Learning is at the moment a quickly growing field covering a wide range of Machine Learning techniques and architectures.
+In this thesis, I cover only the architecture of DNNs that we need for further discussing separation of style and content, Convolutional Neural Networks in Section~\ref{sec:theory:convnets}.
+Before jumping too far ahead, the next sections of this chapter will go through the evolution of relevant ANNs architectures down from the most basic one, the Perceptron, up to the one at hand, Convolutional Neural Network.
 
 
 % ------------------------------------------------------------------------------
 
 \section{Perceptron}
 \label{sec:Perceptron}
+\todo[inline]{pattern recognition}
+
+\begin{description}
+  \item[Feed-forward Neural Networks]
+  The simplest type of artificial neural network, characterized by its connections not forming cycles and thus the data always flowing in one direction: from input to hidden layers to output.
+\end{description}
 A perceptron is a type of cell that performs binary classification.
 
 A binary classifier regardless of how it is implemented. It may very well be just a function or a whole deep neural network.
