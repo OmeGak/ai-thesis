@@ -5,7 +5,7 @@
 
 \cleanchapterquote{At the end of the century one will be able to speak of machines thinking without expecting to be contradicted.}{Alan Turing}{(Computing Machinery and Intelligence (1950))}
 
-In this chapter I cover the basic concepts of Neural Networks that will be used later on when separation of style and content is discussed in more detail.
+In this chapter, I cover the basic concepts of Neural Networks that will be used later on when separation of style and content is discussed in more detail.
 My intention is to allow anybody with basic knowledge in Mathematics and Computing to understand this manuscript from beginning to end.
 
 The explanations will be developed from basic to complex so that a sequential read should guide the reader logically from question to answer while giving as much insight will be necessary to continue and just enough context to understand the raison d'être of the each concept.
@@ -32,21 +32,25 @@ Conversely, driving a car is a simple enough problem so that any person can do i
 The human mind can handle the task because, although not having perfect senses nor 100\% understanding on the laws of physics, how the car works, how other drivers exactly behave and many other factors involved; is capable of dealing with partial information, uncertainty, imprecision and approximations after having learned from experience \cite{Zadeh1994}.
 Opposed to how Classic Computing tries to accurately model the world to solve problems, some fields of Machine Learning try to model how the human mind learns the complexity of the world to reason and act upon it.
 
-At this point it is clear how the study of the human mind plays an important role in Machine Learning.
+At this point, it is clear how the study of the human mind plays an important role in Machine Learning.
 Cognitive Sciences is the field that studies the human mind and how it acquires understanding through experience and the senses.
-Modern Cognitive Sciences have their inception in the 1940s, when efforts were being made to understand the principles of the mind by representing their structures and processes instead of operating directly on them \cite{Thagard2008}.
-The studies quickly branched-off in 1943 when \citet{McCulloch1943}, inspired by biological neural networks, described the first mathematical model of an artificial neural network.
-The field Neural Networks, shorthand for \emph{Artificial Neural Networks} (ANNs), quickly grew in the 1950s when they started being implemented \cite{Farley1954,Rosenblatt1958} as approximation or classification methods.
+Modern Cognitive Sciences have their inception in the 1940s when efforts were being made to understand the principles of the mind by representing their structures and processes instead of operating directly on them \cite{Thagard2008}.
+The studies quickly branched off in 1943 when \citet{McCulloch1943}, inspired by biological neural networks, described the first mathematical model of an artificial neural network.
+The field Neural Networks, shorthand for \emph{Artificial Neural Networks} (ANNs), quickly grew in the 1950s when they started being implemented \cite{Farley1954,Rosenblatt1958} as approximation or binary classification methods.
 
 Since then, the field has evolved and expanded into a myriad of different methods that have maintained the purity with their biological counterparts in greater or lesser degree.
 Within the general framework, we can still talk of neurons, organized in \emph{layers}, implementing an \emph{activation function} and storing experience in \emph{weights} as depicted in Figure~\ref{fig:sec:theory:neurons}.
-An artificial neuron is a simple processing unit, forming networks typically organized in layers, whose input is the set of output of connected neurons from the previous layer and the process it performs is determined by the activation function.
+An artificial neuron is a simple processing unit, forming networks typically organized in layers, whose input is the set of outputs of connected neurons from the previous layer and the process it performs is determined by the activation function.
 The activation function can be implemented either as a threshold to be reached for the neuron to send an output or simply as a transformation of any sort of the input.
 Lastly, experience in ANNs can be understood as connection strength between neurons in biological neural networks and this mechanism is implemented as a set of adaptive parameters, commonly called weights, that modifies the value of each input of the neuron \cite{Hinton1990}.
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/neurons}
-  \caption{Biological Neuron vs Artificial Neuron \cite{Honorio2013}. AC) A biological neuron receives signals at the dendrites, the composition of the signals may or may not produce an excitation in the cell body based on experience, in which case a pulse will be transmitted down the axon and ultimately to other neurons' dendrites via terminal axon in a process called synapsis. BD) Similarly, artificial neuronal networks are organized in layers and synapsis occurs from layer to layer. An artificial neuron in the layer $Y$ receives one or more inputs $X$, representing dendrites, and result of an activation function $f(X)$ produces an output $y_i$, representing the axon, that gets passed to connected neurons in the subsequent layer. Weights represent connection strength between neurons and encode network experience.}
+  \caption{Biological Neuron vs Artificial Neuron \cite{Honorio2013}.
+    AC) A biological neuron receives signals at the dendrites, the composition of the signals may or may not produce an excitation in the cell body based on experience, in which case a pulse will be transmitted down the axon and ultimately to other neurons' dendrites via terminal axon in a process called synapsis.
+    BD) Similarly, artificial neuronal networks are organized in layers and synapsis occurs from layer to layer.
+    An artificial neuron in the layer $Y$ receives one or more inputs $X$, representing dendrites, and result of an activation function $f(X)$ produces an output $y_i$, representing the axon, that gets passed to connected neurons in the subsequent layer.
+    Weights represent connection strength between neurons and encode network experience.}
   \label{fig:sec:theory:neurons}
 \end{figure}
 
@@ -60,7 +64,7 @@ The process can be seen as a teacher supervising the learning of a student.
 The ``teacher" (loss function + weight rectification strategy) knows the correct solution (label of the example) and it corrects the ``student" (the network) when its prediction is incorrect.
 An example of a completely wrong prediction would be the network having 100\% confidence of an image containing a dog when it clearly contains a cat.
 
-One of the most important aspects that determines the accuracy of the network when presented with new examples is the volume of data and the correctness of its labels.
+One of the most important aspects that determine the accuracy of the network when presented with new examples is the volume of data and the correctness of its labels.
 This becomes extremely important when trying to solve real-world problems like image recognition, where massive training sets are required to generalize networks for all concepts in a language under several different lighting conditions.
 Big enough volumes of data have not been available until recently, and even nowadays, complete and accurately labeled datasets are expensive or time consuming to handcraft as the task may be too large or require expert knowledge on the specific field.
 Approaches to work around this involved using partially labeled training datasets and pre-training the network first with unsupervised training where unlabeled examples with similar features are grouped together, then classified after the learning phase and finally used as additional training data \cite{Hinton2006}.
@@ -71,7 +75,7 @@ This approach is called semi-supervised learning and is one of the achievements 
 \label{sub:theory:background:deep-learning}
 
 Since 2006 the field of \emph{Deep Learning}, also called hierarchical learning, has appeared as a new area of Machine Learning research that brings it closer to its original goals: Artificial Intelligence \cite{Deng2014}.
-Deep Learning focuses its efforts on producing methods for learning hierarchical feature representations, different levels of abstraction where higher-level ones are defined from lower-level ones, to help making sense of data such as images, sound and text in real-world applications.
+Deep Learning focuses its efforts on producing methods for learning hierarchical feature representations, different levels of abstraction where higher-level ones are defined from lower-level ones, to help making sense of data such as images, sound, and text in real-world applications.
 
 One clear example of hierarchical representation is a spoken sentence.
 A spoken sentence, the higher-level concept, is composed of spoken words.
@@ -81,10 +85,10 @@ Making sense of speech in Deep Learning means first analyzing the waveform looki
 
 As already mentioned in Chapter~\ref{sec:intro}, this kind of pattern recognition did not perform well until recently.
 Traditional solutions employed shallow neural networks with simplistic models and limited representation power that could only be used to solve well-constrained problems like numerical approximations or binary classification.
-Speech recognition, contrarily, is a very loosely-constrained problem and that is also the case for any problem dealing with the richness of data such as human voice, natural language and natural images.
+Speech recognition, contrarily, is a very loosely-constrained problem and that is also the case for any problem dealing with the richness of data such as human voice, natural language, and natural images.
 
 Studies in human information processing mechanisms suggested the human brain uses deep neuronal architectures to extract complex patterns and build internal representations from rich sensory inputs.
-For instance, the human speech perception system in the brain is equipped with layered hierarchical structures that transforms the information from the acoustic level to the linguistic level \cite{Deng1999,Baker2009}.
+For instance, the human speech perception system in the brain is equipped with layered hierarchical structures that transform the information from the acoustic level to the linguistic level \cite{Deng1999,Baker2009}.
 Training analogous deep architectures in artificial neural networks, \emph{deep neural networks} (DNNs), proved problematic from the beginning since classic learning algorithms tended to easily get trapped in poor local optima parameters.
 This phenomenon, unfortunately, worsened quickly the more layers the neural network presented, which is the case of DNNs.
 
@@ -93,41 +97,77 @@ They, however, were so computationally expensive for training deep neural networ
 These, alongside with powerful Graphic Processing Units (GPUs) becoming a commodity enabling the implementation of these algorithms marked the rapid expansion of Deep Learning in recent years.
 
 Deep Learning is at the moment a quickly growing field covering a wide range of Machine Learning techniques and architectures.
-In this thesis, I cover only the architecture of DNNs that we need for further discussing separation of style and content, Convolutional Neural Networks in Section~\ref{sec:theory:convnets}.
-Before jumping too far ahead, the next sections of this chapter will go through the evolution of relevant ANNs architectures down from the most basic one, the Perceptron, up to the one at hand, Convolutional Neural Network.
+In this thesis, I cover only the architecture of DNNs that we need for further discussing the separation of style and content, \emph{Convolutional Neural Networks} in Section~\ref{sec:theory:convnets}.
+Before jumping too far ahead, the next sections of this chapter will go through the evolution of relevant ANNs architectures down from the most basic one, the \emph{perceptron}, up to the one at hand, Convolutional Neural Network.
 
 
 % ------------------------------------------------------------------------------
 
 \section{Perceptron}
 \label{sec:Perceptron}
-\todo[inline]{pattern recognition}
 
-\begin{description}
-  \item[Feed-forward Neural Networks]
-  The simplest type of artificial neural network, characterized by its connections not forming cycles and thus the data always flowing in one direction: from input to hidden layers to output.
-\end{description}
-A perceptron is a type of cell that performs binary classification.
+The perceptron was the first ever implemented neural network.
+It was created by \citet{Rosenblatt1958} in 1957 based on the studies of \citet{McCulloch1943} and it featured the simplest architecture possible in an ANN, composed of a single neuron.
 
-A binary classifier regardless of how it is implemented. It may very well be just a function or a whole deep neural network.
+The perceptron can be described as performing a task of binary classification, which is simply deciding in which of two mutually exclusive classes a set of inputs belongs \cite{Freund1999} and it is mathematically expressed as follows:
 
-Weight
-Also called learnable parameter or just parameter.
-Coming from neuroscience literature, it refers to how much importance each one of the different input connections of a neuron has in the activation function.
-\todo[inline]
+$$
+  f(x) =
+  \begin{cases}
+    1 & \text{if } {w}\cdot{x}+b > 0\\
+    0 & \text{otherwise}
+  \end{cases}
+$$
 
-\todo[inline]{Overfitting}
+Where $x$, an array of real values, represents the input of the perceptron; $w$, also an array of real values, represents the weights; $b$ is the \emph{bias}; ${w}\cdot{x}$ is the dot product; ${w}\cdot{x}+b > 0$ is the activation function; and $0$ and $1$ are the representation of the mutually exclusive classes.
+
+The inputs are visualized as data points in the space of variables and the activation function as a linear boundary that leaves them classified either above or below it.
+The weights are used to measure the relevance of each one of the inputs in the final classification, parameters that get learned during the training process in the same fashion as I described in Section~\ref{sub:theory:background:neural-networks}.
+The bias gets also learned during the training process, but it does not depend on any input value and is used to control the position of the linear boundary.
+The dot product can also be expressed as a weighted sum $\sum_{i=0}^{m} w_i x_i$ where $m$ is the amount of parameters the perceptron receives per input, as it is depicted in Figure~\ref{fig:sec:theory:perceptron}.
+
+\begin{figure}[htb]
+  \includegraphics[width=\textwidth]{tkz/perceptron}
+  \caption{Anatomy of the Perceptron \cite{Medina2013}.
+    In the center, represented by $\sum$, there is the weighted sum of inputs.
+    Mathematically expressed as the dot product (${w}\cdot{x}$) of the vector of inputs $x$ with the vector of weights $w$, both containing real values.
+    The activation function triggers a binary output $y$ if ${w}\cdot{x}$ plus the the bias $b$, also a real value, is above $0$.}
+  \label{fig:sec:theory:perceptron}
+\end{figure}
+
+Perceptrons can be trained with supervised learning for adjusting the binary classifier to some training dataset.
+Let us imagine we want to train a perceptron to classify animals into either cat or dog based on their size and level of domestication.
+Our training data is labeled, meaning that for each pair $(size, domestication)$ we know whom it actually belongs to: either a cat or a dog.
+We start with a perceptron whose weights are set to random values and the first training example gets classified randomly.
+As new training examples arrive, the learning algorithm will update the weights of the perceptron so that the linear boundary described by ${w}\cdot{x}+b$, the activation function, leaves data points correctly classified in both sides.
+Figure~\ref{fig:sec:theory:perceptron-training} depicts how this process happens.
+
+\begin{figure}[htb]
+  \includegraphics[width=\textwidth]{gfx/perceptron-training}
+  \caption{Linear boundary of a perceptron adjusting to new training examples \cite{Goodspeed2015}.
+    The perceptron classifies inputs with two variables, $size$ and $domestication$, into two classes, dog or cat.
+    Supervised learning adjusts the linear boundary to accommodate the new data points into their correct category.}
+  \label{fig:sec:theory:perceptron-training}
+\end{figure}
+
+The main problem with the perceptron is that the training will never converge to a set weights that correctly classify the training examples if these are not linearly separable, and thus predictions of new data points will consistently be wrong.
+These limitations were mathematically proved by \citet{Minsky1969} in 1969.
+Not only that, they also claimed perceptrons with multiple layers of neurons would not be capable of overcoming non-linearities discouraging new efforts in Neural Networks.
+Little to none research was done in the field until \emph{backpropagation} was developed by \citet{Werbos1974}, rediscovered by \citet{Parker1985}, popularized by \citet{Rumelhart1988} and \emph{multilayer perceptrons} were proved to be universal approximators \cite{Hornik1989,Ruck1990} in 1989.
+
 
 % ------------------------------------------------------------------------------
 
 \section{Multilayer Perceptron}
 \label{sec:theory:mlp}
-A multilayer perceptron (MLP) is a type of feed-forward neural network composed of several layers where neurons of one layer are fully connected with the next one.
+A multilayer perceptron (MLP) is essentially exactly like a perceptron, feed-forward, but composed of several layers where neurons of one layer are fully connected with the next one.
+, characterized by its connections not forming cycles and thus the data always flowing in one direction: from input to neuron to output.
+This kind of architecture is known as \emph{feed-forward}.
 These neural networks are normally used to classify different inputs.
 
-The limitations of the perceptron were mathematically proved \citet{Minsky1969} in 1969 and they claimed perceptrons with multiple layers would not be capable of solving not-linearly separable classes.
-Discouraged by these claims little to none research was done in the field of Neural Networks until backpropagation was developed by \citet{Werbos1974}, rediscovered by \citet{Parker1985}, popularized by \citet{Rumelhart1988} and MLP were proved to be universal approximators \cite{Hornik1989,Ruck1990} in 1989.
 
+
+\todo[inline]{Overfitting}
 
 \subsection{Backpropagation}
 \label{sec:theory:mlp:backpropagation}
@@ -144,7 +184,7 @@ They are able to learn patterns in images from a training set through back-propa
 Such resilience minimizes pre-processing tasks both for training and classification and greatly reduces human supervision, making CNNs the currently preferred system for image recognition \cite{Visin2015}.
 
 Although multi-layer perceptron are able to perform image recognition, they can only handle images of very small resolution due to the architectural limitations of fully connected layers \cite{ZHANG1999}.
-Fully connected layers scale poorly, since neurons of the first hidden layer will process the whole image and will need to store weights for every color channel of every pixel.
+Fully connected layers scale poorly since neurons of the first hidden layer will process the whole image and will need to store weights for every color channel of every pixel.
 Just to give a sense of the scale we are talking, for an RGB image of ${N}\times{M}$ pixels every neuron in a multi-layer perceptron will require storing ${N}\times{M}\times{3}$ weights, which for a ${32}\times{32}$ image it is $3072$ weights, but for a ${1024}\times{1024}$ one is more than $3$ millions.
 In the shallower networks, with a single hidden layer, this already implies an exponential memory growth $O(N^2)$ with respect to image resolution.
 Not only this is a performance issue in terms of hardware resources, the huge amount of parameters that need to be set also causes the system to quickly overfit.
@@ -163,7 +203,7 @@ Using local receptive fields means that neurons in the network will not react to
 This ensures neurons will extract first the most basic visual features such as edges, end-points or corners;
 In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces or objects.
 Such architecture allows effectively takes into account the spatial correlation existing in images.
-Within a layer several neurons performing different feature detections can can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:conv-layer-1}.
+Within a layer, several neurons performing different feature detections can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:conv-layer-1}.
 
 \begin{figure}[htb]
   \begin{center}
@@ -178,7 +218,7 @@ Layers in CNNs are organized in several slices, each of them containing neurons 
 This operation is equivalent to a convolution in image processing, a sliding window that applies a transformation the original image, and that is where CNNs receive their name.
 The sliding window is called kernel, filter or mask, and it is an image transformation matrix, usually small, that performs the weighted sum over a set of pixels of the original image, as shown in Figure~\ref{fig:sec:theory:kernel}
 In this analogy, the kernel of the convolution is the filter applied by the slice over the input, represented by \emph{weights shared} by all its neurons, being this what makes feature recognition robust against translations or distortions in the image.
-The output of the convolution is referred to as \emph{feature map}, and all feature maps produced by a convolutional layer together become the input for the next layer, usually called \emph{volume} since it has height, width and depth.
+The output of the convolution is referred to as \emph{feature map}, and all feature maps produced by a convolutional layer together become the input for the next layer, usually called \emph{volume} since it has height, width, and depth.
 The height and width are proportional to the size of the original image and depth equal to the amount of slices in the layer.
 Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
 
@@ -186,7 +226,9 @@ Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
   \begin{center}
     \includegraphics[width=0.5\textwidth]{gfx/kernel}
   \end{center}
-  \caption{Convolutional kernel \cite{Apple}. The kernel gets centered on the source pixel and the convolution takes into account nearby pixels transforming the source pixel value. The convolution operation is a weighted sum of the source pixel with its nearby pixels. In this case:\\
+  \caption{Convolutional kernel \cite{Apple}.
+    The kernel gets centered on the source pixel and the convolution takes into account nearby pixels transforming the source pixel value.
+    The convolution operation is a weighted sum of the source pixel with its nearby pixels. In this case:\\
     $(0\cdot4)+(0\cdot0)+(0\cdot0)
      +(0\cdot0)+(1\cdot0)+(1\cdot0)
      +(0\cdot0)+(1\cdot0)+(2\cdot-4) = -8$
@@ -196,12 +238,16 @@ Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/conv-layer-2}
-  \caption{Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}. On the left there is the representation of an image of ${32}\times{32}$ pixels with $3$ channels (\emph{RGB}). Neurons apply a filter of size ${5}\times{5}\times{3}$ in particular region of the image. Neurons of the same color belong to the same slice apply the same filter in different regions of the image and produce a feature map. All feature maps combined become the "new image" of size ${28}\times{28}\times{N}$, being $N$ the number of slices in the layer, that gets fed to the next layer.}
+  \caption{Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}.
+    On the left, there is the representation of an image of ${32}\times{32}$ pixels with $3$ channels (\emph{RGB}).
+    Neurons apply a filter of size ${5}\times{5}\times{3}$ in a particular region of the image.
+    Neurons of the same color belong to the same slice apply the same filter in different regions of the image and produce a feature map.
+    All feature maps combined become the ``new image" of size ${28}\times{28}\times{N}$, being $N$ the number of slices in the layer, that gets fed to the next layer.}
   \label{fig:sec:theory:conv-layer-2}
 \end{figure}
 
 \paragraph{Subsampling}
-In the process of detecting higher-order features throughout subsequent layers of the network the exact absolute position of detected features in feature maps is pretty much irrelevant compared to the relative position between them.
+In the process of detecting higher-order features throughout subsequent layers of the network, the exact absolute position of detected features in feature maps is pretty much irrelevant compared to the relative position between them.
 For instance, the pattern that describes the number $7$ is an endpoint in upper left area of a horizontal segment, a corner in the upper right area and an endpoint at the bottom of a vertical segment.
 Still, small variations in the input may cause the pattern not to be detected because the features will not completely match the filter.
 To make the network more robust against variations the sensitivity of the convolutional layers has to be reduced.
@@ -225,7 +271,9 @@ It is important to note that this reduction applies only to the height and width
     \caption{Max-pooling}
     \label{fig:sec:theory:pooling:max}
   \end{subfigure}
-  \caption{Overview of a pooling layer. On the left, the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}. On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.}
+  \caption{Overview of a pooling layer.
+    On the left, the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}.
+    On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.}
   \label{fig:sec:theory:pooling}
 \end{figure}
 
@@ -247,7 +295,13 @@ It is within the fully connected network that the classification takes place.
   \begin{center}
     \includegraphics[width=\textwidth]{gfx/conv-network}
   \end{center}
-  \caption{LeNet typical architecture \cite{LaboratoiredInformatiquedesSystemesAdaptatifs2010}. On the left there is an image (input layer). The image gets processed by a convolutional layer that extracts 4 elementary features producing 4 feature maps (S1). A pooling layer reduces the dimensionality while maintaining the same amount of feature maps (C1). Next, another convolutional layer extracts 6 higher-order features from the 4 feature maps (C2). Again, another pooling layer reduces the resolution of the 6 feature maps (S2). Finally, a fully-connected network takes the 6 feature maps and performs classification over them.}
+  \caption{LeNet typical architecture \cite{LaboratoiredInformatiquedesSystemesAdaptatifs2010}.
+    On the left there is an image (input layer).
+    The image gets processed by a convolutional layer that extracts 4 elementary features producing 4 feature maps (S1).
+    A pooling layer reduces the dimensionality while maintaining the same amount of feature maps (C1).
+    Next, another convolutional layer extracts 6 higher-order features from the 4 feature maps (C2).
+    Again, another pooling layer reduces the resolution of the 6 feature maps (S2).
+    Finally, a fully-connected network takes the 6 feature maps and performs classification over them.}
   \label{fig:sec:theory:convnet}
 \end{figure}
 
