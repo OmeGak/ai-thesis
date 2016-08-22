@@ -1,7 +1,7 @@
 % !TEX root = ../thesis.tex
 
 \chapter{Theory}
-\label{sec:theory}
+\label{chap:theory}
 
 \cleanchapterquote{At the end of the century one will be able to speak of machines thinking without expecting to be contradicted.}{Alan Turing}{(Computing Machinery and Intelligence (1950))}
 
@@ -83,7 +83,7 @@ A spoken word is made up of phonemes.
 A phoneme is a representation of a speech sound with an associated waveform.
 Making sense of speech in Deep Learning means first analyzing the waveform looking for phonemes, then trying to make up words from the phonemes found, and finally producing a grammatically correct and semantically meaningful sentence with those words.
 
-As already mentioned in Chapter~\ref{sec:intro}, this kind of pattern recognition did not perform well until recently.
+As already mentioned in chapter~\ref{chap:intro}, this kind of pattern recognition did not perform well until recently.
 Traditional solutions employed shallow neural networks with simplistic models and limited representation power that could only be used to solve well-constrained problems like numerical approximations or binary classification.
 Speech recognition, contrarily, is a very loosely-constrained problem and that is also the case for any problem dealing with the richness of data such as human voice, natural language, and natural images.
 
@@ -202,7 +202,7 @@ Consequently, a learning procedure for MLPs should determine the weights of neur
 This is equivalent to making the neurons in hidden layers learn internal representations of incoming data, which is one of the main interests of using multi-layered networks to solve real-world problems that are hard to model, be it due to lack of knowledge in the domain or to complexity of the task.
 
 Learning in neural networks can be generally approached as an optimization problem.
-For each training example $(x, t)$, being $x$ the array of input parameters, we first must find the minima in the error function $E = (t - y)^2$, being $t$ the correct prediction and $y$ the prediction of the network.
+For each training example $(x, t)$, being $x$ the array of input parameters, we first must find the minima in the error function $E = (t - y)^2$, being $t$ the correct prediction, also referred to \emph{ground truth}, and $y$ the prediction of the network.
 At the same time, $y$ is a function representing the operation performed by the network as a whole, depending on the weights $w$ that will ultimately be adjusted to minimize the error $E$.
 
 \autoref{fig:sec:theory:mlp:error-function} shows the visual representation of the error function for a single-layer perceptron with 2-parameter inputs, being $y = w_1 x_1 + w_2 x_2$, the transformation function.
@@ -229,7 +229,7 @@ Propagated errors represent how much of the overall error was contributed by the
 Once the error has been calculated for the first hidden layer, the weight correction phase begins.
 Starting from the first hidden layer, each weight of every neuron is adjusted by finding the optimal value that minimizes the error for that neuron using the original input $x$.
 Once all weights in layer are adjusted, the neuron outputs, now updated due to having adjusted weights, are used as input to optimize weights in the subsequent layers, as depicted in \autoref{fig:sec:theory:mlp:backprop-2}.
-\todo{I don't fully understand this} This is done by applying gradient descent, which is achieved by calculating the partial derivative of the error with respect to a given weight.
+This is done by applying gradient descent, which is achieved by \todo{don't fully understood}{calculating the partial derivative of the error with respect to a given weight}.
 
 $$\Delta w_i = \frac{\partial E}{\partial w_i} = E \frac{df(x)}{dx}x_i$$
 
@@ -270,7 +270,7 @@ We, therefore, evaluate the performance of a trained network based on how accura
 \label{sec:theory:mlp:overfitting}
 
 We refer to overfitting when a trained neural network has excellent accuracy against samples in the training dataset, but low accuracy against unseen samples.
-Overfitting may occur mainly because of a number of reasons: 1) not having enough training samples to train the network, 2) the training dataset being too noisy.
+Overfitting may occur mainly because of two reasons: 1) not having enough training samples to train the network, 2) the training dataset being too noisy.
 
 When there are fewer learnable parameters than training samples the network will simply ``memorize'' how to match training samples to correct predictions.
 If more training samples are given than $input \rightarrow prediction$ binomials the network can ``memorize'', it will be forced to learn patterns instead.
@@ -287,28 +287,40 @@ Big networks with too many learnable parameters are more sensitive to noise and 
 Preparation of training datasets for training effective networks becomes crucial, but it is generally hard to decide what is noise and what is valuable data in many cases.
 On top of it, learnable parameters increase exponentially when input data is rich and when the network has multiple layers, and because of this, vast amounts of training data are required, making the dataset preparation process even more laborious.
 
-Although MLPs are universal approximators, their fully connected architecture makes them extremely prone to overfitting, since the number of learnable parameters quickly grow with every neuron added to the network.
-Because of this, MLPs were outperformed by domain specific algorithms, relegating neural networks to a secondary position in many areas.
-Convolutional Neural Networks, developed in the mid 90s, proposed a much more efficient feed-forward multi-layer architecture, finally capable of robustly performing classification on real-world problems like image recognition.
+Although MLPs are universal approximators, their fully connected architecture makes them extremely prone to overfitting, as number of learnable parameters quickly grow with every neuron added to the network.
+Overfitting made MLPs outperformed by domain specific algorithms, relegating neural networks to a secondary position in many areas of Machine Learning for some time.
+In tasks like image or speech recognition, MLPs suffered terribly the effects of overfitting to the point of not being truly usable, displaying frustrating performance when used in end-user applications as I illustrated in chapter~\ref{chap:intro}.
+
+I will next discuss how Convolutional Neural Networks, developed in the late 90s, eventually proposed a feed-forward multilayer architecture capable of robustly performing image and speech recognition, among others tasks.
+They require far fewer learnable parameters than MLPs, avoiding the extreme effects of overfitting seen in MLPs, and are currently state-of-the-art in many pattern recognition tasks.
 
 
 % ------------------------------------------------------------------------------
 
 \section{Convolutional Neural Networks}
 \label{sec:theory:convnets}
-Convolutional Neural Networks, also known as CNNs or ConvNets, are feed-forward multi-layer neural networks inspired by cats' and monkeys' visual ventral stream \cite{Hubel1968,Lawrence1997} and are responsible for a major breakthroughs in image recognition \cite{LeCun1995}.
-Before and contemporaneous to LeCun's LeNet \cite{LeCun1998} other networks like Fukushima's Neocognitron \cite{Fukushima1980} or Riesenhuber \& Poggio's HMAX \cite{Riesenhuber1999} were also inspired in the visual cortex, but it was the former that established the fundamentals for CNNs.
+Convolutional Neural Networks, also known as CNNs or ConvNets, are feed-forward multilayer neural networks inspired by cats' and monkeys' visual ventral stream \cite{Hubel1968,Lawrence1997} and are responsible for a major breakthroughs in image recognition \cite{LeCun1995}.
+Before and contemporaneous to \citeauthor{LeCun1998}'s LeNet \cite{LeCun1998} other networks like \citeauthor{Fukushima1980}'s Neocognitron \cite{Fukushima1980} or \citeauthor{Riesenhuber1999}'s HMAX \cite{Riesenhuber1999} were also inspired in the visual cortex, but it was the former that established the fundamentals for CNNs.
 They are able to learn patterns in images from a training set through back-propagation and present built-in resilience towards translation and distortion variances in the input.
 Such resilience minimizes pre-processing tasks both for training and classification and greatly reduces human supervision, making CNNs the currently preferred system for image recognition \cite{Visin2015}.
 
-Although MLP are able to perform image recognition, they can only handle images of very small resolution due to the architectural limitations of fully connected layers \cite{ZHANG1999}.
+MLP were able to perform image recognition \cite{ZHANG1999}, but in order to reduce the effects of overfitting they could only perform scope-specific predictions on low-res images that had to be processed beforehand to reduce noise.
 Fully connected layers scale poorly since neurons of the first hidden layer will process the whole image and will need to store weights for every color channel of every pixel.
-Just to give a sense of the scale we are talking, for an RGB image of ${N}\times{M}$ pixels every neuron in a multi-layer perceptron will require storing ${N}\times{M}\times{3}$ weights, which for a ${32}\times{32}$ image it is $3072$ weights, but for a ${1024}\times{1024}$ one is more than $3$ millions.
-In the shallower networks, with a single hidden layer, this already implies an quadratic memory growth $O(N^2)$ with respect to image resolution.
-Not only this is a performance issue in terms of hardware resources, the huge amount of parameters that need to be set also causes the system to quickly overfit.
-Worse than that, treating pixels individually as described, regardless of their proximity, does not take into account the spatial information of an image.
-That means that to handle variations in the images the network will end up with the same weights being stored in different neurons, proving multi-layer perceptron clearly inefficient for image recognition.
-These problems are addressed by CNN architectural features \cite{LeCun1998}: 1) local receptive fields, 2) shared weights, and 3) subsampling.
+Just to give a sense of the scale we are talking, for an RGB image of ${N}\times{M}$ pixels, every neuron in a multi-layer perceptron will require storing ${N}\times{M}\times{3}$ weights, which for a ${32}\times{32}$ image it is $3072$ weights, but for a ${1024}\times{1024}$ one is more than $3$ millions.
+This means a quadratic memory growth $O(N^2)$ with respect to image resolution.
+Not only this is the cause of huge overfitting effects, it also implies a performance issue in terms of hardware resources.
+
+One big wrong assumption in MLPs, derived from their fully-connected nature, is treating each input parameter individually as non-correlated data.
+This is false in tasks of signal processing, speech recognition or image recognition.
+For instance, let us image a set of images containing a red apple.
+Pixels on it are not randomly distributed but, rather, red-hued pixels are expected to bunch together.
+It seems the rule \emph{``\text{bunch of red-hued pixels} $\rightarrow$ \text{apple}''} should be sufficient to recognize an apple, no matter if the bunch of pixels appears either centered or shifted to one side.
+MLPs' pitfall is two-fold here.
+On the one hand, the network will probably fail if the apple is shifted too much on one side since it did not just the rule proposed before but more likely: \emph{``pixels in positions $(4, 4)..(4, 6)...(6, 4)..(6, 6)$ are red $\rightarrow$ apple''}.
+On the other hand, every neuron ``sees'' the whole image so the rule will be learnt in several different sub-networks as some sort of brute-force pattern learning.
+This intuition tells us MLPs require a bigger amount of learnable parameters that should be needed and that is in fact the cause of overfitting problems.
+
+CNNs can take advantage of spatial information inherent in data thanks to a number of CNN architectural features \cite{LeCun1998}: 1) local receptive fields, 2) shared weights, and 3) subsampling.
 
 
 \subsection{Properties}
@@ -320,21 +332,21 @@ In the context of convolution networks, receptive field refers to a region of th
 Using local receptive fields means that neurons in the network will not react to the whole image but to a small region of it instead.
 This ensures neurons will extract first the most basic visual features such as edges, end-points or corners;
 In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces or objects.
-Such architecture allows effectively takes into account the spatial correlation existing in images.
-Within a layer, several neurons performing different feature detections can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:conv-layer-1}.
+Such architecture allows effectively taking into account the spatial correlation existing in images.
+Within a layer, several neurons performing different feature detections can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:convnets:conv-layer-1}.
 
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[width=0.6\textwidth]{gfx/conv-layer-1}
   \end{center}
   \caption{Stack of neurons applying different feature detections within a convolutional layer on the same perceptual region \cite{Aphex342015}.}
-  \label{fig:sec:theory:conv-layer-1}
+  \label{fig:sec:theory:convnets:conv-layer-1}
 \end{figure}
 
 \paragraph{Shared weights}
 Layers in CNNs are organized in several slices, each of them containing neurons that detect the same feature but in different regions of the image and each slice detecting different features.
 This operation is equivalent to a convolution in image processing, a sliding window that applies a transformation the original image, and that is where CNNs receive their name.
-The sliding window is called kernel, filter or mask, and it is an image transformation matrix, usually small, that performs the weighted sum over a set of pixels of the original image, as shown in Figure~\ref{fig:sec:theory:kernel}
+The sliding window is called kernel, filter or mask, and it is an image transformation matrix, usually small, that performs the weighted sum over a set of pixels of the original image, as shown in Figure~\ref{fig:sec:theory:covnets:kernel}
 In this analogy, the kernel of the convolution is the filter applied by the slice over the input, represented by \emph{weights shared} by all its neurons, being this what makes feature recognition robust against translations or distortions in the image.
 The output of the convolution is referred to as \emph{feature map}, and all feature maps produced by a convolutional layer together become the input for the next layer, usually called \emph{volume} since it has height, width, and depth.
 The height and width are proportional to the size of the original image and depth equal to the amount of slices in the layer.
@@ -351,7 +363,7 @@ Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
      +(0\cdot0)+(1\cdot0)+(1\cdot0)
      +(0\cdot0)+(1\cdot0)+(2\cdot-4) = -8$
   }
-  \label{fig:sec:theory:kernel}
+  \label{fig:sec:theory:covnets:kernel}
 \end{figure}
 
 \begin{figure}[htb]
@@ -371,7 +383,7 @@ Still, small variations in the input may cause the pattern not to be detected be
 To make the network more robust against variations the sensitivity of the convolutional layers has to be reduced.
 This is effectively accomplished by reducing the resolution of the feature maps through non-linear \emph{subsampling} with pooling layers.
 $Max$ is normally used as the non-linear function, giving the name of the subsampling operation \emph{max-pooling}, but it is not limited to it, as we will see in Chapter~\ref{sec:system}.
-A pooling layer takes as input a volume of feature maps and, usually, has a non-overlapping filter of size ${2}\times{2}$ that gets applied on each one of the feature maps individually, as can be appreciated in Figure~\ref{fig:sec:theory:pooling}.
+A pooling layer takes as input a volume of feature maps and, usually, has a non-overlapping filter of size ${2}\times{2}$ that gets applied on each one of the feature maps individually, as can be appreciated in Figure~\ref{fig:sec:theory:convnets:pooling}.
 More specifically, the filter summarizes the feature map by performing max-pooling over its ${2}\times{2}$ regions and producing a single value for each, being this a size reduction of $75\%$.
 It is important to note that this reduction applies only to the height and width of the original input since the depth refers to the amount of feature maps and these are preserved.
 
@@ -380,34 +392,35 @@ It is important to note that this reduction applies only to the height and width
     \includegraphics[width=\textwidth]{gfx/pool}
     \captionsetup{justification=centering}
     \caption{General pooling}
-    \label{fig:sec:theory:pooling:general}
+    \label{fig:sec:theory:convnets:pooling:general}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.55\textwidth}
     \includegraphics[width=\textwidth]{gfx/maxpool}
     \captionsetup{justification=centering}
     \caption{Max-pooling}
-    \label{fig:sec:theory:pooling:max}
+    \label{fig:sec:theory:convnets:pooling:max}
   \end{subfigure}
   \caption{Overview of a pooling layer.
     On the left, the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}.
     On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.}
-  \label{fig:sec:theory:pooling}
+  \label{fig:sec:theory:convnets:pooling}
 \end{figure}
 
 
 \subsection{Architecture}
-\label{sub:concepts:convnets:achitecture}
+\label{sub:theory:convnets:achitecture}
 
 While discussing the properties of ConvNets I have introduced two of their building blocks: convolutional layers and pooling layers.
 These alone are not enough to use ConvNets for object recognition tasks since feature extraction is not the same as classification.
 Let us have a look at how they fit in the big picture and the rest of the building blocks.
 
 In Figure~\ref{fig:sec:theory:convnet} I present the typical configuration of a complete convolutional network.
-We can see convolutional layers are alternated with pooling layers and ultimately fed into a fully connected network.
-Whereas convolutional layers typically increase the amount of feature maps increasing the richness of intermediate representations, pooling layers reduce their spatial resolution keeping the amount of parameters low and thus limiting overfitting.
-After several convolutional-pooling layers, the set of all feature maps, a highly abstracted representation the original image at that point, gets fed into fully connected layers, usually in the shape of a multilayer perceptron.
-It is within the fully connected network that the classification takes place.
+We can see convolutional layers are alternated with pooling layers and ultimately fed into a fully connected network
+Whereas convolutional layers typically increase the amount of feature maps making intermediate representations richer, pooling layers reduce their spatial resolution keeping the amount of parameters low and thus limiting overfitting.
+After several convolutional-pooling layers, one final step is a fully connected layer, where the classification takes finally place.
+Optionally, normalization layers can be present after convolutional layers to increase the learning rate of the network.
+During the learning process, the fully connected layers will be connected to a loss layer that calculates the error of the prediction over a training sample.
 
 \begin{figure}[htb]
   \begin{center}
@@ -423,54 +436,57 @@ It is within the fully connected network that the classification takes place.
   \label{fig:sec:theory:convnet}
 \end{figure}
 
-Additionally to these fundamental layers, normalization layers have been used as well.
-These, however are \todo{cite}{falling out of use} since their contribution to the final result is close to none and they increase the complexity of the network.
-ReLU \cite{Krizhevsky2012,Nair2010}
+\paragraph{Fully connected layers}
+The fully connected layer is essentially a MLP only that we feed it with the set feature maps produced by the convolutional layers.
+Classification is performed in the same fashion as we saw in \autoref{sec:theory:mlp:backpropagation}, but feature maps at that point are a highly abstracted and rich representation of the original image.
+That means the data is much less noisy than raw pixels, so overfitting happens to a much lesser degree than what we discussed in \autoref{sec:theory:mlp:overfitting}.
 
-% It's important to note that all the weights in the network are learnt through back-propagation.
+\paragraph{Loss layer}
+The loss layer is just a step where the network evaluates the prediction accuracy over ground truth during supervised learning.
+In CNNs, a $softmax$ function, defined as the average cross-entropy loss, is normally used.
 
-% One last element essential in convolutional networks is the loss layer.
-% This layer calculates the error of the classifications
+\paragraph{Normalization layers}
+Additionally to these fundamental layers, normalization layers have been used as well, commonly referred to as \emph{Rectified Linear Units} or just \emph{ReLU}.
+They simply use non-saturating activation functions like $max$ where range is $[0,\infty]$, opposed to saturating activation functions  like sigmoid where range $[0,1]$ to speed up the training phase \cite{Krizhevsky2012,Nair2010}.
+The idea behind using non-saturating activation functions is minimizing the effects of the \emph{vanishing gradient problem} \cite{Socher2015}.
+The vanishing gradient problem is a phenomenon in backpropagation that happens when weights adjust too slow on the first layers of very deep networks.
+In them, the error contribution of each neuron in the initial layers will be very low and the saturating functions limit unnecessarily how much the weight can be adjusted.
+Normalization layers, however, are falling out of use since it has been proved their contribution to the final result is very small and introduces new problems \cite{Lo2015}.
 
+Summarizing, CNNs are mainly composed of: convolutional layers, pooling layers, normalization layers, fully connected layers and a loss layer.
+Convolutional layers detect features in the input.
+Pooling layers reduce the dimensionality of feature maps produced by convolutional layers.
+Optionally, normalization layers magnify the non-linear properties of data to speed up learning.
+Fully connected layers perform classification like we saw for MLP.
+Finally, the loss layer evaluates the quality of the prediction during the training process.
 
-\todo[inline]{TODO}
-Summarizing, CNNs are mainly composed by \todo{?}N types of layers: Convolutional layers, pooling layers, ReLU layers, fully connected layers.
-Convolutional layers perform feature detection.
-Pooling layers reduce the dimensionality of feature maps.
-ReLU layers \todo{?}?.
-Fully connected layers perform classification.
-
-\paragraph{Feature learning}
-Finding kernel that produce the desired feature maps is very difficult since it greatly varies depending on the task.
-In CNN, feature learning is the step in which the kernel gets increasingly better at the task of filtering an image or a feature map coming from a previous layer.
-\todo[inline]
 
 \subsection{Hyperparameters}
-\label{sub:concepts:hyperparameters}
+\label{sub:theory:convnets:achitecture}
 
-It's worth noting that filters are always applied over the whole depth so that a ${W}\times{H}$ filter
+In the next chapters we will be looking at some already trained ConvNets for image recognition.
+Before we move on here is a quick recap of architectural parameters that we will be talking about.
 
+\paragraph{Convolutional input}
+The shape of the receptive field in a convolutional layer.
+It determines the local connectivity of neurons of the layer with neurons of the previous one.
+It is normally larger in the first layer and it decreases for subsequent ones as the resolution decreases.
+In image recognition tasks it is common to range from $12x12$ to $15x15$ in the first layer.
 
-% ------------------------------------------------------------------------------
+\paragraph{Convolutional output}
+The spatial arrangement of the output volume from a convolutional layer, which comes defined by \emph{depth}, \emph{stride}, and \emph{zero-padding}.
+Depth represent how many neurons are connected to the same receptive field, each one applying a different filter.
+It represents how many feature maps are produced as seen in \autoref{fig:sec:theory:convnets:conv-layer-1}.
+Looking at \autoref{fig:sec:theory:covnets:kernel}, depicting a partial convolution, will help to understand stride and zero-padding.
+Stride defines how many units of separation the receptive field moves in the convolution operation and it represents the neuron density loss with respect to the previous layer.
+With stride 1 there will be no ``gaps'' between neurons and their receptive field will be highly overlapped.
+As stride goes up more ``gaps'' will appear, reducing the resolution of the output and making neurons' receptive field less overlapped.
+Lastly, as seen in the convolution operation, the resolution of the result is smaller than the original on the edges.
+Zero-padding is used to pad the output volume with zeros when maintaining the same resolution is required.
 
-\section{Convolutional Network Visualization}
-\label{sec:theory:netvis}
+\paragraph{Pooling filter}
+Shape of the filter in pooling layers, defined by height, width and stride.
+Usually $2x2$ filter with stride 2 are used, as in the example depicted in \autoref{fig:sec:theory:convnets:pooling:max}.
+Stride is set to 2 so that the filters do not overlap.
 
-
-% ------------------------------------------------------------------------------
-
-\section{Adversarial Networks}
-\label{sec:theory:adversarialnet}
-
-
-% ------------------------------------------------------------------------------
-
-\section{Non-linear transformations}
-\label{sec:Non-linear transformations}
-
-They are filters (a.k.a. kernel or feature map), often represented by $\phi$, implemented as functions whose output is not linear to its input often used for feature extraction on images (edges, connectivity, etc.). Perceptron neurons use these as activation function because the dimensionality of the input can be reduced so that it becomes binary classifiable.
-
-\begin{description}
-  \item[tanh]
-  \item[ReLU]
-\end{description}
+\todo[inline]{Maybe talk about regularization methods? Dropout?}
