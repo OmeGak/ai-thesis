@@ -305,7 +305,7 @@ Before and contemporaneous to \citeauthor{LeCun1998}'s LeNet \cite{LeCun1998} ot
 They are able to learn patterns in images from a training set through back-propagation and present built-in resilience towards translation and distortion variances in the input.
 Such resilience minimizes pre-processing tasks both for training and classification and greatly reduces human supervision, making CNNs the currently preferred system for image recognition \cite{Visin2015}.
 
-MLP were able to perform image recognition \cite{ZHANG1999} but in order to reduce the effects of overfitting they could only perform scope-specific predictions on low-res images that had to be processed beforehand to reduce noise.
+MLP were able to perform image recognition \cite{Zhang1999} but in order to reduce the effects of overfitting they could only perform scope-specific predictions on low-res images that had to be processed beforehand to reduce noise.
 Fully connected layers scale poorly since neurons of the first hidden layer will process the whole image and will need to store weights for every color channel of every pixel.
 Just to give a sense of the scale we are talking, for an RGB image of ${N}\times{M}$ pixels, every neuron in a multi-layer perceptron will require storing ${N}\times{M}\times{3}$ weights, which for a ${32}\times{32}$ image it is $3072$ weights, but for a ${1024}\times{1024}$ one is more than $3$ million.
 This means a quadratic memory growth $O(N^2)$ with respect to image resolution.
@@ -427,7 +427,7 @@ During the learning process, the fully connected layers will be connected to a l
   \begin{center}
     \includegraphics[width=\textwidth]{gfx/conv-network}
   \end{center}
-  \caption{LeNet typical architecture \cite{LaboratoiredInformatiquedesSystemesAdaptatifs2010}.
+  \caption{LeNet typical architecture \cite{Lisa2010}.
     On the left, there is an image (input layer).
     The image gets processed by a convolutional layer that extracts 4 elementary features producing 4 feature maps (S1).
     A pooling layer reduces the dimensionality while maintaining the same amount of feature maps (C1).
