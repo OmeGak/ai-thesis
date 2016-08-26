@@ -227,12 +227,19 @@ The error gets then propagated backwardly to all neurons layer by layer, as repr
 The propagated error for a neuron $i$ within a given hidden layer is calculated as $E_{i} = \sum_j w_{ij} E_{j}$, being $j$ a neuron in the following layer (closer to output), $E_{j}$ its calculated error, and $w_{ij}$ its associated weight for neuron $i$.
 Propagated errors represent how much of the overall error was contributed by the neuron on its layer.
 
-Once the error has been calculated for the first hidden layer, the weight correction phase begins.
-Starting from the first hidden layer, each weight of every neuron is adjusted by finding the optimal value that minimizes the error for that neuron using the original input $x$.
-Once all weights of a layer are adjusted, the neuron outputs, now updated due to having adjusted weights, are used as input to optimize weights of subsequent layers, as depicted in \autoref{fig:sec:theory:mlp:backprop-2}.
-This is done by applying gradient descent, which is achieved by \todo{don't fully understood}{calculating the partial derivative of the error with respect to a given weight}.
+Once the contributed error has been calculated for the first hidden layer, the weight correction phase begins.
+Starting from the first hidden layer, each weight $w_i$ of a neuron is adjusted by finding the optimal value $w'_i$ that minimizes the error $E$ for that neuron, calculate through error propagation, using the original input $x$.
+The variation $\Delta w_i$ to be applied on $w_i$ is calculated by finding the partial derivative of the error with respect to $w_i$, which can be analytically calculated with gradient descent as:
 
-$$\Delta w_i = \frac{\partial E}{\partial w_i} = E \frac{df(x)}{dx}x_i$$
+\begin{equation}
+  \Delta w_i =
+    -\alpha \frac{\partial E}{\partial w_i} =
+    -\alpha E f'({w}\cdot{x}) x_i
+\end{equation}
+
+Being $f'$ the derivative of the activation function, $\alpha$ the learning rate, carefully picked to make the optimal weights converge, and $-1$ a constant to ensure descent in the algorithm.
+
+Weight correction for neurons in subsequent layers is performed similarly layer by layer until the whole network is updated, the only difference their inputs being the new output $x'$ as a result of neurons in previous layer with their now optimal weights $w'$ as depicted in \autoref{fig:sec:theory:mlp:backprop-2}.
 
 \begin{figure}[htb]
   \begin{subfigure}[b]{0.5\textwidth}
@@ -250,17 +257,12 @@ $$\Delta w_i = \frac{\partial E}{\partial w_i} = E \frac{df(x)}{dx}x_i$$
   \end{subfigure}
   \caption{Backpropagation.
     In error propagation (a), the error $E$, calculated as $t - output$, is propagated from the output layer to all hidden layers, representing how much each neuron contributed to the overall error.
-    In weight correction (b), having the propagated error for all neurons and starting by the first hidden layer, gradient descent can be applied to optimize each weight for every neuron receiving the original input.
-    After all weights in a layer are adjusted gradient descent is applied in the subsequent layers using the updated outputs.}
+    In weight correction (b), now that the contributed error $E_{ij}$ for every neuron is known and starting by the first hidden layer, weights are updated in a neuron by finding the values that minimize said error for the original input received.
+    In subsequent layers, new weights are calculated similarly but using the updated outputs from the previous layer instead.}
   \label{fig:sec:theory:mlp:backprop}
 \end{figure}
 
-\todo[inline]{maybe talk about the learning rate?}
-
-% There is usually a learning rate parameter that makes gradient descent not to override the weights but simply shift them towards or away from the optimal value for that particular training example.
-% This parameter must be carefully chosen to make the training process converge and \todo{is that so?}{avoid overfitting}.
-
-For a more in-depth step by step explanation of backpropagation, I recommend further reading \url{http://home.agh.edu.pl/~vlsi/AI/backp_t_en/backprop.html} \cite{Bernacki2005}.
+For a visual step by step explanation of backpropagation, I recommend further reading \url{http://home.agh.edu.pl/~vlsi/AI/backp_t_en/backprop.html} \cite{Bernacki2005}.
 
 There is still one final concern when training MLP.
 Backpropagation trains MLP to accurately predict samples from the training dataset, but the ultimate goal of training a neural network, we must not forget, is making it capable of predicting unseen samples.
