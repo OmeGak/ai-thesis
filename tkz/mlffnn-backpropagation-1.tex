@@ -6,7 +6,7 @@
   arrows,
   shapes.geometric
 }
-\definecolor{redish}{RGB}{231,76,60}
+\definecolor{reddish}{RGB}{231,76,60}
 
 \begin{document}
 \begin{tikzpicture}[
@@ -32,7 +32,7 @@
   },
   nerror/.style={
     draw=none,
-    fill=redish
+    fill=reddish
   },
   net/.style={
     matrix of nodes,
@@ -67,13 +67,13 @@
 };
 
 % Arrows 2
-\draw[<-,redish,thick] (mat-3-2) -- node[above=1pt,scale=0.8]{$w_1 E$} (mat-6-3);
-\draw[<-,redish,thick] (mat-6-2) -- node[above=1pt,scale=0.8]{$w_2 E$} (mat-6-3);
-\draw[<-,redish,thick] (mat-9-2) -- node[above=1pt,scale=0.8]{$w_3 E$} (mat-6-3);
+\draw[<-,reddish,thick] (mat-3-2) -- node[above=1pt,scale=0.8]{$w_1 E$} (mat-6-3);
+\draw[<-,reddish,thick] (mat-6-2) -- node[above=1pt,scale=0.8]{$w_2 E$} (mat-6-3);
+\draw[<-,reddish,thick] (mat-9-2) -- node[above=1pt,scale=0.8]{$w_3 E$} (mat-6-3);
 
 \draw[->] (mat-6-3.north east) to [out=45,in=135] node[above]{Output} (mat-6-4);
 \draw[<-] (mat-6-4) to node[right] {t} +(0,2cm);
-\draw[<-,redish,thick] (mat-6-3) to node[below]{Error} (mat-6-4) ;
+\draw[<-,reddish,thick] (mat-6-3) to node[below]{Error} (mat-6-4) ;
 
 \end{tikzpicture}
 \end{document}

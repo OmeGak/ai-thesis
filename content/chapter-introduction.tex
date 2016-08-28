@@ -26,16 +26,21 @@ Said algorithms are capable of adapting to the variability of real-world input m
 
 Deep neural networks in pattern recognition are not explicitly designed for solving separation of form and content, however.
 Their goal is far less specific: to simply classify the input correctly.
-Still, they seem to acquire an innate understanding of these concepts in the process, as Gatys' work \cite{Gatys2015B} proved.
+Still, they seem to acquire an innate understanding of these concepts in the process, as \citeauthor{Gatys2015B}'s research \cite{Gatys2015B} proves.
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/neural-style-composed}
-  \caption{Gatys' algorithm implementation \cite{Johnson2015} results. \textbf{Top-left}: \textit{The Starry Night} by Vincent van Gogh, 1889, source of style. \textbf{Top-right}: night-time photograph of the Stanford campus, source of content. \textbf{Bottom}: Combination of style and content from the images above.}
+  \caption{
+    Neural Style algorithm implementation \cite{Johnson2015} results.
+    \textbf{Top-left}: \textit{The Starry Night} by Vincent van Gogh, 1889, source of style.
+    \textbf{Top-right}: night-time photograph of the Stanford campus, source of content.
+    \textbf{Bottom}: Combination of style and content from the images above.
+  }
   \label{fig:sec:intro:neural-style}
 \end{figure}
 
-Gatys created a system that is able to compose the style and content of two arbitrary images into a new one, as depicted in Figure~\ref{fig:sec:intro:neural-style}.
-Instead of using a deep neural network trained for that precise purpose, the system utilizes an already trained one on object recognition and, as the network processes an image, its content and style are extracted separately from the intermediate layers.
+\citeauthor{Gatys2015B} developed a method capable of blending the style and content of two source images into a new one, as depicted in \autoref{fig:sec:intro:neural-style}.
+Instead of using a deep neural network trained for that precise purpose, the system utilizes an already trained one in object recognition and, as the network processes an image, its content and style are extracted separately from the intermediate layers.
 
 This finding opens the door for wondering about other underlying understanding deep neural networks develop as side effects, how this can be used to better understand the human brain \cite{Yamins2016}, or what other applications already trained networks may have.
 
@@ -45,7 +50,7 @@ This finding opens the door for wondering about other underlying understanding d
 \section{Goals}
 \label{sec:intro:goals}
 
-This research focuses on Gatys' unique approach for proving separation of form and content from the optic of neural networks.
+This research focuses on \citeauthor{Gatys2015B}'s unique approach for proving separation of form and content from the optic of neural networks.
 Being the field of Artificial Neural Networks extensive and in constant revision, in an effort to stay in topic the scope has been restricted to the following goals:
 
 \begin{enumerate}
@@ -63,14 +68,14 @@ Being the field of Artificial Neural Networks extensive and in constant revision
 \section{Thesis Structure}
 \label{sec:intro:structure}
 
-\textbf{Chapter \ref{chap:theory}} \\[0.2em]
-In chapter \ref{chap:theory} I give a theoretical introduction on artificial neural networks and deep learning as well as general concepts of used in particular implementations of networks that will be used in later chapters to further discuss separation of style and content.
+\textbf{Chapter~\ref{chap:theory}} \\[0.2em]
+In Chapter~\ref{chap:theory} we give a theoretical introduction on artificial neural networks and deep learning as well as general concepts of used in particular implementations of networks that will be used in later chapters to further discuss separation of style and content.
 
-\textbf{Chapter \ref{sec:related}} \\[0.2em]
-In chapter \ref{sec:related} I talk in more detail form and content, the motivation for having them separated, its problematics and how it has been traditionally approached with machine learning up to Gaty's work.
+\textbf{Chapter~\ref{sec:related}} \\[0.2em]
+In Chapter~\ref{sec:related} we talk in more detail form and content, the motivation for having them separated, its problematics and how it has been traditionally approached with machine learning.
 
-\textbf{Chapter \ref{sec:system}} \\[0.2em]
-In chapter \ref{sec:system} I explain and discuss the results presented by \citet{Gatys2015}, as well as derived works.
+\textbf{Chapter~\ref{chap:system}} \\[0.2em]
+In Chapter~\ref{chap:system} we present and discuss Neural Style \cite{Gatys2015B}, an algorithm that successfully separates content and style.
 
-\textbf{Chapter \ref{sec:conclusion}} \\[0.2em]
-Finally, in chapter \ref{sec:conclusion} I will muse about the implications of deep neural networks being able to extrapolate their past experience to tackle problems for which they weren't trained for.
+\textbf{Chapter~\ref{sec:conclusion}} \\[0.2em]
+Finally, in Chapter~\ref{sec:conclusion} we will muse about the implications of deep neural networks being able to extrapolate their past experience to tackle problems for which they weren't trained for.

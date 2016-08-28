@@ -3,7 +3,7 @@
 \chapter{Theory}
 \label{chap:theory}
 
-\cleanchapterquote{At the end of the century one will be able to speak of machines thinking without expecting to be contradicted.}{Alan Turing}{(Computing Machinery and Intelligence (1950))}
+\cleanchapterquote{At the end of the century one will be able to speak of machines thinking without expecting to be contradicted.}{Alan Turing}{(Computing Machinery and Intelligence in 1950)}
 
 In this chapter, I cover the basic concepts of neural networks that will be used later on when separation of style and content is discussed in more detail.
 My intention is to allow anybody with basic knowledge in Mathematics and Computing to understand this manuscript from beginning to end.
@@ -46,11 +46,13 @@ Lastly, experience in ANNs can be understood as connection strength between neur
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/neurons}
-  \caption{Biological Neuron vs. Artificial Neuron \cite{Honorio2013}.
+  \caption{
+    Biological Neuron vs. Artificial Neuron \cite{Honorio2013}.
     AC) A biological neuron receives signals at the dendrites, the composition of the signals may or may not produce an excitation in the cell body based on experience, in which case a pulse will be transmitted down the axon and ultimately to other neurons' dendrites via terminal axon in a process called synapsis.
     BD) Similarly, artificial neuronal networks are organized in layers and synapsis occurs from layer to layer.
     An artificial neuron in the layer $Y$ receives one or more inputs $X$, representing dendrites, and as a result of an activation function $f(X)$ produces an output $y_i$, representing the axon, that gets passed to connected neurons in the subsequent layer.
-    Weights represent connection strength between neurons and encode network experience.}
+    Weights represent connection strength between neurons and encode network experience.
+  }
   \label{fig:sec:theory:neurons}
 \end{figure}
 
@@ -128,10 +130,12 @@ The dot product can also be expressed as a weighted sum $\sum_{i=0}^{m} w_i x_i$
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{tkz/perceptron}
-  \caption{Anatomy of the Perceptron \cite{Medina2013}.
+  \caption{
+    Anatomy of the Perceptron \cite{Medina2013}.
     In the center, represented by $\sum$, there is the weighted sum of inputs.
     Mathematically expressed as the dot product (${w}\cdot{x}$) of the vector of inputs $x$ with the vector of weights $w$, both containing real values.
-    The activation function triggers a binary output $y$ if ${w}\cdot{x}$ plus the bias $b$, also a real value, is above $0$.}
+    The activation function triggers a binary output $y$ if ${w}\cdot{x}$ plus the bias $b$, also a real value, is above $0$.
+  }
   \label{fig:sec:theory:perceptron}
 \end{figure}
 
@@ -144,9 +148,11 @@ Figure~\ref{fig:sec:theory:perceptron-training} depicts how this process happens
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/perceptron-training}
-  \caption{Linear boundary of a perceptron adjusting to new training examples \cite{Goodspeed2015}.
+  \caption{
+    Linear boundary of a perceptron adjusting to new training examples \cite{Goodspeed2015}.
     The perceptron classifies inputs with two variables: $size$ and $domestication$, into two classes, dog or cat.
-    Supervised learning adjusts the linear boundary to accommodate the new data points into their correct category.}
+    Supervised learning adjusts the linear boundary to accommodate the new data points into their correct category.
+  }
   \label{fig:sec:theory:perceptron-training}
 \end{figure}
 
@@ -172,10 +178,12 @@ MLFFNNs' architecture allows for different neurons in the hidden layers to make 
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{tkz/mlffnn}
-  \caption{Architecture of the most simple multi-layer neural network \cite{Medina2013A}.
-  The first layer, at the left, represents the parameters of the input that get fed into each one of the neurons of the next layer.
-  The last layer, at the right, performs the final classification.
-  The layers in between, called hidden layers, also perform intermediate classification and their output is fed as input to the next layer.}
+  \caption{
+    Architecture of the most simple multi-layer neural network \cite{Medina2013A}.
+    The first layer, at the left, represents the parameters of the input that get fed into each one of the neurons of the next layer.
+    The last layer, at the right, performs the final classification.
+    The layers in between, called hidden layers, also perform intermediate classification and their output is fed as input to the next layer.
+  }
   \label{fig:sec:theory:mlffnn}
 \end{figure}
 
@@ -211,8 +219,10 @@ Gradient descent can be efficiently applied on this kind of chained functions us
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/error-function}
-  \caption{Error function of a single-layer neural network with two input weights \cite{AI4562013}.
-    The function is defined by $E = (t - (w_1 x_1 + w_2 x_2))^2$ and finds its minima at $E = 0$ when $w_1$ and $w_2$ correctly predict $t$ for the input $x$.}
+  \caption{
+    Error function of a single-layer neural network with two input weights \cite{AI4562013}.
+    The function is defined by $E = (t - (w_1 x_1 + w_2 x_2))^2$ and finds its minima at $E = 0$ when $w_1$ and $w_2$ correctly predict $t$ for the input $x$.
+  }
   \label{fig:sec:theory:mlffnn:error-function}
 \end{figure}
 
@@ -252,10 +262,12 @@ Weight correction for neurons in subsequent layers is performed similarly layer 
     \caption{Weight correction}
     \label{fig:sec:theory:mlffnn:backprop-2}
   \end{subfigure}
-  \caption{Backpropagation.
+  \caption{
+    Backpropagation.
     In error propagation (a), the error $E$, calculated as $t - output$, is propagated from the output layer to all hidden layers, representing how much each neuron contributed to the overall error.
     In weight correction (b), now that the contributed error $E_{ij}$ for every neuron is known and starting by the first hidden layer, weights are updated in a neuron by finding the values that minimize said error for the original input received.
-    In subsequent layers, new weights are calculated similarly but using the updated outputs from the previous layer instead.}
+    In subsequent layers, new weights are calculated similarly but using the updated outputs from the previous layer instead.
+  }
   \label{fig:sec:theory:mlffnn:backprop}
 \end{figure}
 
@@ -339,7 +351,9 @@ Within a layer, several neurons performing different feature detections can be s
   \begin{center}
     \includegraphics[width=0.6\textwidth]{gfx/conv-layer-1}
   \end{center}
-  \caption{Stack of neurons applying different feature detections within a convolutional layer on the same perceptual region \cite{Aphex342015}.}
+  \caption{
+    Stack of neurons applying different feature detections within a convolutional layer on the same perceptual region \cite{Aphex342015}.
+  }
   \label{fig:sec:theory:convnets:conv-layer-1}
 \end{figure}
 
@@ -368,11 +382,13 @@ Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
 
 \begin{figure}[htb]
   \includegraphics[width=\textwidth]{gfx/conv-layer-2}
-  \caption{Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}.
+  \caption{
+    Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}.
     On the left, there is the representation of an image of ${32}\times{32}$ pixels with $3$ channels (\emph{RGB}).
     Neurons apply a filter of size ${5}\times{5}\times{3}$ in a particular region of the image.
     Neurons of the same color belong to the same slice apply the same filter in different regions of the image and produce a feature map.
-    All feature maps combined become the ``new image'' of size ${28}\times{28}\times{N}$, being $N$ the number of slices in the layer, that gets fed to the next layer.}
+    All feature maps combined become the ``new image'' of size ${28}\times{28}\times{N}$, being $N$ the number of slices in the layer, that gets fed to the next layer.
+  }
   \label{fig:sec:theory:conv-layer-2}
 \end{figure}
 
@@ -401,9 +417,11 @@ It is important to note that this reduction applies only to the height and width
     \caption{Max-pooling}
     \label{fig:sec:theory:convnets:pooling:max}
   \end{subfigure}
-  \caption{Overview of a pooling layer.
+  \caption{
+    Overview of a pooling layer.
     On the left, the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}.
-    On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.}
+    On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.
+  }
   \label{fig:sec:theory:convnets:pooling}
 \end{figure}
 
@@ -426,13 +444,15 @@ During the learning process, the output of the classification at the end of the 
   \begin{center}
     \includegraphics[width=\textwidth]{gfx/conv-network}
   \end{center}
-  \caption{LeNet typical architecture \cite{Lisa2010}.
+  \caption{
+    LeNet typical architecture \cite{Lisa2010}.
     On the left, there is an image (input layer).
     The image gets processed by a convolutional layer that extracts 4 elementary features producing 4 feature maps (S1).
     A pooling layer reduces the dimensionality while maintaining the same amount of feature maps (C1).
     Next, another convolutional layer extracts 6 higher-order features from the 4 feature maps (C2).
     Again, another pooling layer reduces the resolution of the 6 feature maps (S2).
-    Finally, a fully-connected network takes the 6 feature maps and performs classification over them.}
+    Finally, a fully-connected network takes the 6 feature maps and performs classification over them.
+  }
   \label{fig:sec:theory:convnet}
 \end{figure}
 
