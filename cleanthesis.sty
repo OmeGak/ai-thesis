@@ -245,6 +245,8 @@
 	labelsep=\cthesis@figuresep,				% 	- separator: none, colon, period, space, quad, newline, endash
 	singlelinecheck=false			% 	- no centered single-lined captions
 ]{caption}[2008/08/24]
+\DeclareCaptionLabelSeparator{protectedspace}{~}
+\captionsetup[subfigure]{labelsep=protectedspace}
 %\ifthenelse{\boolean{@figurecaptionoutside}}%
 \ifct@cthesis@hangfigurecaption
 %	{%
