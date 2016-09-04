@@ -19,21 +19,14 @@
 
 
 % **************************************************
-% Debug LaTeX Information
-% **************************************************
-
-%\listfiles
-
-
-% **************************************************
 % Information and Commands for Reuse
 % **************************************************
 
 \newcommand{\thesisTitle}{Form and Content in Neural Networks}
 \newcommand{\thesisName}{Alejandro Avil\'es}
 \newcommand{\thesisSubject}{Unconventional Applications of Deep Learning}
-\newcommand{\thesisDate}{August 30, 2016}
-\newcommand{\thesisVersion}{Neural Style explanation added}
+\newcommand{\thesisDate}{September 6, 2016}
+\newcommand{\thesisVersion}{0.3}
 \newcommand{\thesisFirstSupervisor}{Fernando Berzal}
 \newcommand{\thesisUniversity}{\protect{University of Granada}}
 \newcommand{\thesisUniversityDepartment}{Department of Computer Science and Artificial Intelligence}
@@ -49,7 +42,8 @@
 % Load and Configure Packages
 % **************************************************
 
-% Base packages
+% -- Base packages -------------------------------------------------------------
+
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[
@@ -135,7 +129,7 @@
 
 \input{content/chapter-introduction}
 \input{content/chapter-theory}
-\input{content/chapter-related-work}
+\input{content/chapter-context}
 \input{content/chapter-system}
 \input{content/chapter-conclusion}
 \cleardoublepage
@@ -152,12 +146,6 @@
 	\printbibliography[heading=subbibliography,title={Images},type=image,prefixnumbers={!}]
 }
 \cleardoublepage
-
-\listoffigures
-\cleardoublepage
-%
-% \listoftables
-% \cleardoublepage
 
 \input{content/colophon}
 \cleardoublepage

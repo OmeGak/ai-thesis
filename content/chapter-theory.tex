@@ -5,6 +5,9 @@
 
 \cleanchapterquote{At the end of the century one will be able to speak of machines thinking without expecting to be contradicted.}{Alan Turing}{(Computing Machinery and Intelligence in 1950)}
 
+
+% ------------------------------------------------------------------------------
+
 In this chapter, I cover the basic concepts of neural networks that will be used later on when separation of style and content is discussed in more detail.
 My intention is to allow anybody with basic knowledge in Mathematics and Computing to understand this manuscript from beginning to end.
 
@@ -283,7 +286,7 @@ We refer to overfitting when a trained neural network has excellent accuracy aga
 Overfitting may occur mainly because of two reasons: 1) not having enough training samples to train the network, 2) the training dataset being too noisy.
 
 When there are fewer learnable parameters than training samples the network will simply ``memorize'' how to match training samples to correct predictions.
-If more training samples are given than $input \rightarrow prediction$ associations the network can ``memorize'', it will be forced to learn patterns instead.
+If more training samples are given than $input \mapsto prediction$ associations the network can ``memorize'', it will be forced to learn patterns instead.
 For instance, going back to the example of classifying animals as either cat or dog we used in \autoref{sec:theory:perceptron}, if we only had two training samples: a cat, small and wild; and a dog, big and docile; the network would wrongly assume all small animals are cats and a chihuahua would end up classified as a feline.
 
 The training dataset is noisy when training samples contain parameters weakly correlated with the prediction task.
@@ -324,7 +327,7 @@ One big wrong assumption in MLFFNNs, derived from their fully-connected nature, 
 This is false in tasks of signal processing, speech recognition or image recognition.
 For instance, let us image a set of images containing a red apple.
 Pixels on it are not randomly distributed but, rather, red-hued pixels are expected to bunch together.
-It seems the rule \emph{``bunch of red-hued pixels $\rightarrow$ apple''} should be sufficient to recognize an apple, no matter if the bunch of pixels appears either centered or shifted to one side.
+It seems the rule \emph{``bunch of red-hued pixels $\mapsto$ apple''} should be sufficient to recognize an apple, no matter if the bunch of pixels appears either centered or shifted to one side.
 MLFFNNs' pitfall is two-fold here.
 On the one hand, the network will probably fail if the apple is shifted too much on one side since it did not just the rule proposed before but more likely: \emph{``pixels in positions $(4, 4)..(4, 6)...(6, 4)..(6, 6)$ are red $\rightarrow$ apple''}.
 On the other hand, every neuron ``sees'' the whole image so the rule will be learned in several different sub-networks as some sort of brute-force pattern learning.
@@ -341,7 +344,7 @@ The term \emph{receptive field} is borrowed from the literature of neuroscience 
 In the context of convolution networks, receptive field refers to a region of the visual input, represented by an image, that is connected with one or several neurons that will react to it and is commonly called \emph{filter}.
 Using local receptive fields means that neurons in the network will not react to the whole image but to a small region of it instead.
 This ensures neurons will extract first the most basic visual features such as edges, end-points or corners;
-In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces or objects.
+In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces, objects or scenes.
 Such architecture allows effectively taking into account the spatial correlation existing in images.
 Within a layer, several neurons performing different feature detections can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:convnets:conv-layer-1}.
 

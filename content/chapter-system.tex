@@ -5,20 +5,17 @@
 
 \cleanchapterquote{Sometimes a problem that initially looks hopelessly complicated turns out to have a surprisingly simple solution.}{Nick Bostrom}{(Superintelligence: Paths, Dangers, Strategies)}
 
-\todo[inline]{Connect with previous chapter}
 
-% Separation of content and style, as we discussed in the introduction, has not been traditionally a matter of concern for pattern recognition in machine learning.
-% Although object recognition
-% As we have seen also in chapter 3, attempts at style transfer rely on pixel-wise operations.
+% ------------------------------------------------------------------------------
 
-% Neural Style is not the first attempt at extracting style from artworks
-% Features from Deep Neural Networks trained on object recognition have been previously used for style recognition in order to classify artworks according to the period in which they were created.20 There, classifiers are trained on top of the raw network activations, which we call content representations. We conjecture that a transformation into a stationary feature space such as our style representation might achieve even better performance in style classification.
-% \cite{Karayev2014}
+In this chapter, we finally present and explain \citeauthor{Gatys2015B}'s approach to separation of style and content with the neural style algorithm \cite{Gatys2015B}.
 
-% As discussed in Chapter~\ref{chap:intro}, style has received little attention in pattern recognition.
+We have seen in Chapter~\ref{chap:context} how the field of non-photorealistic rendering has tried for a long time to produce techniques that better separated style and content in order to produce more compelling results in style transfer tasks.
+These techniques focused more and more towards capturing larger-scale patterns, which is something convolutional neural networks (CNNs) trained in object recognition have proved to excel at.
+Recent efforts in understanding CNN have delivered visualization techniques that can produce compelling images from the internal representations of deep neural networks.
+Neural style relies both on CNN and visualization techniques to give a holistic approach to separation of style and content, as we will see next.
 
-\citeauthor{Gatys2015B} proved in \cite{Gatys2015B} content and style in convolutional neural networks are separable.
-They proposed an algorithm that not only is able to do so but can manipulate both representations independently to produce new perceptually meaningful images.
+The neural style algorithm is a novel approach to style transfer that is able to manipulate content and style independently.
 Some examples of the results achieved by their algorithm can be seen in \autoref{sub:system:examples}.
 
 \begin{figure}[!htb]
@@ -36,9 +33,16 @@ Some examples of the results achieved by their algorithm can be seen in \autoref
   \label{sub:system:examples}
 \end{figure}
 
-In these examples we observe the style from several artworks is transferred to an original photograph.
-The content of the photograph, its global arrangement, is effectively preserved while the style of the artworks, color, patterns, and local structures, is blended.
-Unlike other attempts in style transfer, \todo{Check later}{as we have seen before}, neural style uses the feature space from a convolutional neural network trained in object recognition.
+In these examples, we observe how the style from several artworks is transferred to an original photograph.
+The content of the photograph, its global arrangement, is consistently preserved while the style of the artworks, color, patterns, and local structures, is blended seamlessly.
+Previous approaches mainly rely on non-parametric techniques or directly operate on the pixel representation of images, as we saw previously.
+Instead, neural style, by using a CNN trained in object recognition is able to: on the one hand extracting content patterns of arbitrary size in an image, and on the other hand applying deep visualization techniques to perform manipulations directly in those feature spaces, providing not a robust but also flexible style transfer method.
+From the perspective of style transfer as an artistic rendering tool, it is desirable for the algorithm to provide a sufficiently rich space of results to explore \cite{Ashikhmin2003}, and neural style easily surpasses any of the techniques seen before.
+Further in this chapter (\autoref{fig:system:results}) we show how every pair of content-style images emphasis on content and style can be combined in multiple ways.
+
+As discussed in Chapter~\ref{chap:intro}, style has traditionally received little attention in pattern recognition tasks in machine learning \cite{Karayev2014}.
+Some attempts were done before in separation of style and content \cite{Tenenbaum2000,Elgammal2004}, their reach was limited to much simpler input, such as characters in different handwriting or faces with slightly different poses.
+Neural style presents a completely novel approach to separation of style and content and it happens to require only a few adjustments on a CNN already trained for object recognition, as we will see next.
 
 
 % ------------------------------------------------------------------------------
@@ -48,8 +52,6 @@ Unlike other attempts in style transfer, \todo{Check later}{as we have seen befo
 
 Neural style, simply put, takes two image sources: a photograph and an artwork, extracts the content from one and the style from the other, and generates a new image that matches both simultaneously.
 The whole algorithm relies on a CNN already trained in object recognition to extract content and style from features found in source images.
-
-\todo[inline]{Consider moving/connecting VGG-Network details to previous chapter}
 
 \citeauthor{Gatys2015B}'s particular implementation uses VGG-Network \cite{Simonyan2014}, a CNN already trained in object recognition.
 VGG-Network was designed and trained by the Visual Geometry Group at the University of Oxford with the goal of evaluating the performance of networks with increasing depth and it managed to score top results in ImageNet Challenge 2014.
@@ -325,8 +327,6 @@ The optimization process is one of huge dimensionality, taking into account the 
 \section{Results}
 \label{sec:system:results}
 
-\todo[inline]{Use my own results if enough time}
-
 \citeauthor{Gatys2015B} presented in \cite{Gatys2015B} a series of results to showcase how each different hyperparameter affect the outcome of the algorithm as they vary.
 As hinted while explaining the reconstruction process, the hyperparameters taken into account are three: 1) the ratio of emphasis on content over style $\alpha / \beta$, 2) the relative weights given to the CNN layers for style representation $\vec{w}_L$, and 3) which CNN layer is used for content representation.
 
@@ -365,24 +365,22 @@ This region is not stationary as it varies from case to case depending on the ph
 
 % ------------------------------------------------------------------------------
 
-\section{Conclusion}
-\label{sec:system:conclusion}
+\section{Discussion}
+\label{sec:system:discussion}
 
-For the same reason \citeauthor{Gatys2015A} argues in \cite{Gatys2015A} about \citet{Portilla2000}'s approach not grasping the whole scope of natural textures which seems to have been solved I argue requiring human intervention for finding a set of hyperparameters in Neural Style that produce human compelling artistic composition is letting me think we are still far from understanding what describes art.
+\citeauthor{Gatys2015B} are the first ones surprised with their results.
+A neural system trained to perform a basic computational task of biological vision, such as object recognition, automatically learns image representations that allow successful separation of style and content.
+They speculate that when learning object recognition, the network has to become invariant to all image variations that preserves object identity, and so the internal representations must help reach this goal.
+Internal representations that capture not only the content of an image but also the possible variations in its appearance would be extremely practical for object recognition.
 
-Neural Style astonishing results have caused quite a stir since they were presented in 2015.
-In the next chapter, we will see how it has impacted the machine learning research community with derived work and promising further applications.
+The style representation described for neural style, extracting correlations between neuron activations, although theorized by \citeauthor{Gatys2015A} with the sole intention of producing a statistical measure to characterize a texture, it is, in fact, a biologically possible.
+Complex cells in the human primary human system, perform similar operations in order to perceive motion \cite{Adelson1985}, inviting to wonder if a process similar to neural style is what actually grants us the ability to abstract content from style and therefore our ability to create and enjoy art.
 
-\todo[inline]{Complete discussion so that it connects with next chapter}
+Yet, I argue we are still far from a method that encompasses the creativity process in the human mind.
+\citeauthor{Gatys2015A} in \cite{Gatys2015A} regarded \citet{Portilla2000}'s approach in texture transfer as not grasping the whole scope of natural textures because the method required careful selection of statistical measurements on a per-texture basis in order.
+This is not the case in neural style, as style and content are consistently separated.
+However, images generated with neural style require fine-tuning hyperparameters to achieving compelling results on a per content-style pair basis.
+How can we quantify aesthetic beauty? This is still an open problem in non-photorealistic rendering \cite{Ashikhmin2003} and although neural style appears to have brought us closer to answering it, there is more work to be done in that direction.
 
-% All in all it is truly fascinating that a neural system, which is trained to perform one of the core computational tasks of biological vision, automatically learns image representations that allow the separation of image content from style. The explanation could be that when learning object recognition, the network has to become invariant to all image variation that preserves object identity. Representations that factorise the variation in the content of an image and the variation in its appearance would be extremely practical for this task. Thus, our ability to abstract content from style and therefore our ability to create and enjoy art might be primarily a preeminent signature of the powerful inference capabilities of our visual system.
-
-% To understand our texture features better in the context of the original object recognition task of the network, we evaluated how well object identity can be linearly decoded from the texture features in different layers of the network. For each layer we computed the Gram-matrix representation of each image in the ImageNet training set [23] and trained a linear soft-max classifier to predict object identity. As we were not interested in optimising prediction performance, we did not use any data
-% augmentation and trained and tested only on the 224×224 centre crop of the images. We computed the accuracy of these linear classifiers on the ImageNet validation set and compared them to the
-% performance of the original VGG-19 network also evaluated on the 224 × 224 centre crops of the validation images.
-
-% The analysis suggests that our texture representation continuously disentangles object identity in- formation (Fig. 4). Object identity can be decoded increasingly well over the layers. In fact, linear decoding from the final pooling layer performs almost as well as the original network, suggesting that our texture representation preserves almost all high-level information. At first sight this might appear surprising since the texture representation does not necessarily preserve the global structure of objects in non-texture images (Fig. 2, last column). However, we believe that this “inconsistency” is in fact to be expected and might provide an insight into how CNNs encode object identity. The convolutional representations in the network are shift-equivariant and the network’s task (object recognition) is agnostic to spatial information, thus we expect that object information can be read out independently from the spatial information in the feature maps. We show that this is indeed the case: a linear classifier on the Gram matrix of layer ‘pool5’ comes close to the performance of the full network (87.7% vs. 88.6% top 5 accuracy, Fig. 4)
-
-% We envision that this will be useful for a wide range of experimen- tal studies concerning visual perception ranging from psychophysics over functional imaging to even electrophysiological neural recordings
-% The style representations simply compute the correlations between different types of neurons in the network. Extracting correlations between neurons is a bio- logically plausible computation that is, for example, implemented by so-called complex cells in the primary visual system (V1)
-% \cite{Adelson1985}
+Neural style astonishing results attracted a lot of attention and a plenty of work is being done both directly adapting neural style for other purposes as well as applying the same concepts in different ways.
+We will give a quick overview on this in the next chapter.
