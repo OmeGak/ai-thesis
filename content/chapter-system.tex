@@ -8,7 +8,7 @@
 
 % ------------------------------------------------------------------------------
 
-In this chapter, we finally present and explain \citeauthor{Gatys2015B}'s approach to the separation of style and content with the Neural Style algorithm \cite{Gatys2015B}.
+In this chapter, we will finally present and explain \citeauthor{Gatys2015B}'s approach to the separation of style and content with the Neural Style algorithm \cite{Gatys2015B}.
 
 We have seen in Chapter~\ref{chap:context} how the field of non-photorealistic rendering has tried for a long time to produce techniques that better separated style and content in order to produce more compelling results in style transfer tasks.
 These techniques focused more and more towards capturing larger-scale patterns, which is something convolutional neural networks (CNNs) trained for object recognition have proved to excel at.
@@ -52,9 +52,9 @@ Neural Style presents a completely novel approach to the separation of style and
 \label{sec:system:method}
 
 Neural Style, simply put, takes two sources image (i.e. a photograph and an artwork), extracts the content from one and the style from the other, and generates a new image that matches both simultaneously.
-The whole algorithm relies on a CNN already trained for object recognition to extract content and style from features found in source images.
+The whole algorithm relies on a CNN pre-trained for object recognition to extract content and style from features found in source images.
 
-\citeauthor{Gatys2015B}'s particular implementation uses the VGG network \cite{Simonyan2014}, a CNN already trained for object recognition.
+\citeauthor{Gatys2015B}'s particular implementation uses the VGG network \cite{Simonyan2014}, a CNN pre-trained for object recognition.
 The VGG network was designed and trained by the Visual Geometry Group at the University of Oxford with the goal of evaluating the performance of networks with increasing depth and it managed to score top results in the ImageNet Challenge in 2014.
 The network achieved its best results in between 16 and 19 weight layers with an architecture of convolutional filters with a very small receptive field (${3}\times{3}$, the smallest that can capture the notion of left/right, up/down and center), stride set to 1 pixel, and zero-padding to 1 pixel as well to preserve the original resolution of the input after the convolution.
 Subsampling was performed by 5 max-pooling layers, inserted after some of the convolutional layers, over a ${2}\times{2}$ pixel window with stride set to 2 pixels so that the filter would not have overlapping input.
@@ -141,7 +141,7 @@ This means that, within a texture model, any image that presents the same summar
 Texture synthesis was later inspired by human visual systems, using Gabor filters for edge detection, which proved to be very similar to the human visual system \cite{Heeger1995,Portilla2000}.
 Statistical measurements in these cases were taken over Gabor filter responses rather than on image pixels.
 Results presented by \citet{Portilla2000} are probably still the best reported to date \cite{Gatys2015A}, but their method required the careful handcrafting of summary statistics that would result in good texture models.
-Because of this, \citeauthor{Gatys2015A} argued that \citeauthor{Portilla2000}'s method fails to generalize to the full extent of natural textures and proposed in \cite{Gatys2015A} a method that combines the use of summary statistics with the feature space of a CNN already trained for object recognition, which fully models the human visual system.
+Because of this, \citeauthor{Gatys2015A} argued that \citeauthor{Portilla2000}'s method fails to generalize to the full extent of natural textures and proposed in \cite{Gatys2015A} a method that combines the use of summary statistics with the feature space of a CNN pre-trained for object recognition, which fully models the human visual system.
 
 Picking up the analogy between textures and style again, the summary statistics of the texture model is what we refer to as the style representation of the image.
 Since texture models are per definition stationary, the style representation must discard the spatial information existing in feature maps while keeping the notion of patterns.

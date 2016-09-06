@@ -18,12 +18,12 @@ In Chapter~\ref{chap:context} we reviewed how the feature extraction capabilitie
 It is remarkable how well we understand how to make neural networks work for object recognition, as they now rival human performance in many aspects, compared to how little we know about how they reason once they are trained.
 To help understanding this, recently-developed techniques try to visualize internal representations of deep neural networks and have produced very intriguing images with with potential artistic implications.
 
-In Chapter~\ref{chap:system} we presented the Neural Style algorithm and how it managed to solve a long-lasting problem in artistic rendering: the separation of style and content.
+In Chapter~\ref{chap:system} we presented the Neural Style algorithm and how it managed to solve a long-standing problem in artistic rendering: the separation of style and content.
 Whereas the algorithm can produce visually compelling compositions of style and content from two different source images, it requires fine-tuning on a per-case basis.
 This make us believe Neural Style fails to grasp the notion of ``aesthetics'', which is another unsolved problem in artistic rendering, often studied in \emph{algorithmic aesthetics}.
 
-In Chapter~\ref{chap:applications} we surveyed applications relying on methods proposed by or closely related to Neural Style.
-\todo[inline]{complete}
+In Chapter~\ref{chap:applications} we surveyed a number of methods for improved style transfer and several other image transformation tasks that also rely on extracting visually perceptive features.
+They all presenting superior performance than the state of the art in their respective field.
 
 The separation of style and content had been a very difficult problem to solve because it depends on human non-objective perception of what is style and what is content in an artwork.
 Formulating notions of ``aesthetics'' is a similarly complex problem, since we cannot formally define it and totally builds upon human perception.
@@ -49,7 +49,7 @@ For training it, an aesthetic estimation network would rate the perceptual quali
 The first challenge is finding how to quantify the perceptual quality of an image.
 That is, to model an inherently human subjective notion.
 For that we propose a convolutional neural network (CNN) that should be trained for estimating aesthetics based on human opinion.
-The network could be either trained from scratch or from one already trained for object recognition, applying transfer learning techniques \cite{Pan2010}, which basically allows the network to adjust to a slightly different task or domain.
+The network could be either trained from scratch or from one pre-trained for object recognition, applying transfer learning techniques \cite{Pan2010}, which basically allows the network to adjust to a slightly different task or domain.
 
 In order to train the aesthetics estimation network we must have a sufficiently large and diverse training dataset of image-rating pairs.
 We imagine a crowdsourcing platform with which to collect ratings from humans on artistic compositions.
