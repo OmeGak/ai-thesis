@@ -27,7 +27,7 @@ In \autoref{fig:sec:context:object-recognition} we can see a typical task of gen
 \citet{Pinto2008} concluded in 2008 that the difficulty of the task stems from the fact that any 3D object in the world has an infinite number of representations in 2D images, as position, pose, lighting, and background vary with respect to the observer.
 At the same time, as we argued in Chapter~\ref{chap:intro}, the brain is able to perform general object recognition in the real world without any apparent struggle, and so replicating the human visual system started to be perceived as a possible strategy to fully capture the complexity of the task.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{gfx/object-recognition-1}
     \label{fig:sec:context:object-recognition-1}
@@ -97,7 +97,7 @@ This is visible in \autoref{fig:sec:context:deep-visualization:deep-visualizatio
 For constructing these visualizations, \citeauthor{Mahendran2014} use gradient descent to find a new image that matches the feature space at a particular layer in a very similar way as we will discuss in more detail in Chapter~\ref{chap:system}.
 Interestingly, selecting different subsets of feature channels produces texturized versions of the original image, as shown in \autoref{fig:sec:context:deep-visualization:deep-visualization-reconstructions-2}.
 
-\begin{figure}[htbp]
+\begin{figure}[b]
   \includegraphics[width=\textwidth]{gfx/deep-visualization-reconstructions-1}
   \caption{
     CNN layer visualizations of a monkey image generated via gradient descent \cite{Mahendran2014}.
@@ -106,7 +106,7 @@ Interestingly, selecting different subsets of feature channels produces texturiz
   \label{fig:sec:context:deep-visualization:deep-visualization-reconstructions-1}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/deep-visualization-reconstructions-2}
   \caption{
     CNN visualization of the first convolutional layer selecting different subsets of feature channels for the gradient descent generation \cite{Mahendran2014}.
@@ -120,7 +120,7 @@ That means a new image is generated in a way that the trained CNN would classify
 In \autoref{fig:sec:context:deep-visualization-class}, some examples of this technique are displayed with clearly psychedelic results.
 The generated images do not resemble natural images very much, more like graphic artifacts instead, but the network will anyway classify them correctly as these artifacts have been generated to cause precisely the right neural activations.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{gfx/deep-visualization-class-1}
     \caption{dumbbell}
@@ -168,10 +168,11 @@ DeepDream works as some sort of glorified \emph{pareidolia} that enhances whatev
 It can be explained because the a CNN trained on recognizing places has probably seen lots of structures, fountains and trees.
 Also, because white noise images carry no information, we could say that these images are purely a product of the neural network's understanding of the world.
 
-\begin{figure}[htbp]
+\begin{figure}[p]
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{gfx/dream-buildings-1}
   \end{subfigure}
+  \par\medskip
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{gfx/dream-buildings-2}
   \end{subfigure}
@@ -188,7 +189,7 @@ Although they already rival human performance in many aspects, we can easily foo
 For instance, in \autoref{fig:sec:context:deep-visualization:deep-visualization-fooling} we observe some of these fooling images that CNNs classify with total certainty as belonging to the categories shown below them.
 These images have been generated with an evolutionary algorithm that applies random modifications and keeps those that better fit the desired category.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/deep-visualization-fooling}
   \caption{
     Mislabeled images by a CNN trained for object recognition \cite{Nguyen2014}.
@@ -234,7 +235,7 @@ Conceptually, given an image $A$ and its filtered version $A'$, the system learn
 \autoref{fig:sec:context:style-transfer:style-transfer-analogy} shows the algorithm at a glance.
 The limitation of this approach is clear, as both an original image and its artistic version are required.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/style-transfer-analogy}
   \caption{
     The Image Analogies algorithm \cite{Hertzmann2001}.
@@ -247,7 +248,7 @@ Later, in 2003, \citet{Ashikhmin2003} developed an algorithm called Fast Texture
 The algorithm uses \emph{Markov random fields} to model the sample texture and then it generates the stylized image by growing texture patches, blending them pixel by pixel with those of the target image.
 A limitation of this style transfer approach, also shared with \citeauthor{Hertzmann2001}'s, is that texture coherence can only be preserved locally \cite{Lee2010} and, thus, only small texture patches are applied, as shown in \autoref{fig:sec:context:style-transfer:style-transfer-analogy}.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/style-transfer-fast-texture}
   \caption{
     Results of applying Fast Texture Transfer with different texture samples \cite{Ashikhmin2003}.
@@ -264,7 +265,7 @@ Then, a style transfer process similar to the previous one applies the texture b
 This method, like the ones described before, uses low-level statistical features.
 \citeauthor{Xie2007} already mentioned the disadvantage of this and anticipated a sharper separation of style and content using higher-level, larger-scale features involving prior human knowledge.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \begin{subfigure}[b]{0.24\textwidth}
     \includegraphics[width=\textwidth]{gfx/style-transfer-feature-1}
     \caption{Style example}
@@ -305,7 +306,7 @@ The algorithm attains this goal by taking into account the flow of a target imag
 We can see in \autoref{fig:sec:context:style-transfer:style-transfer-directional} how this approach preserves the different regions of the target image very sharply, as the strokes are transferred with different intensity.
 This method creates compelling results, but it is limited to stroke-based rendering and far from the generalization we are looking for in a holistic separation of style and content.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/style-transfer-directional}
   \caption{
     Results of applying Directional Texture Transfer \cite{Lee2010}.

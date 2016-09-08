@@ -18,7 +18,7 @@ Neural style relies both on CNNs and visualization techniques to give a holistic
 The neural style algorithm is a novel approach to style transfer that is able to manipulate content and style independently.
 Some examples of the results achieved by this algorithm can be seen in \autoref{sub:system:examples}.
 
-\begin{figure}[!htb]
+\begin{figure}[p]
   \includegraphics[width=\textwidth]{gfx/neural-style-examples}
   \caption{
     Images synthesized using the neural style algorithm \cite{Gatys2015B}.
@@ -118,7 +118,7 @@ On the one hand, it illustrates how textures are independent of the exact pixel 
 On the other hand, it proves summary statistics are a better metric to distinguish one pattern from another.
 This means that, within a texture model, any image that presents the same summary statistics as another, although having a different exact representation, can be considered to be the same texture.
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{gfx/texture-1}
     \caption{Two-texture image}
@@ -217,7 +217,7 @@ which, generalized for any layer $l$ with the chain rule, can be analytically ca
 We can then apply standard error backpropagation \cite{Orr2008} as depicted in \autoref{fig:system:method:feature-reconstruction} to calculate the gradients for each pixel of the white noise image $\vec{x}$.
 With them, we can adjust $\vec{x}$ until its content representation matches that of the photograph $\vec{p}$ at layer $l$.
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{tkz/feature-reconstruction}
   \caption{
     Content reconstruction with standard backpropagation.
@@ -283,17 +283,7 @@ Finally, assuming $\vec{x}$ is the content representation $F^l$ in layer $l = 0$
 
 Like in content representation, the gradients $\Delta \vec{x}$ can be obtained with standard error backpropagation to adjust the white noise $\vec{x}$ until its style representation matches that of $\vec{a}$ for the selected set of feature correlations $\{G^1, G^2, \dots, G^L\}$.
 
-The results of separately reconstructing content and style can be seen in \autoref{sub:system:method:reconstructions}.
-In content reconstruction, at the bottom, while the visualizations generated from lower layers (a, b, c) preserve pixel fidelity when compared to the input image, those generated from higher layers (d, e) lose pixel fidelity, since due to subsampling effects there is not enough information in the layer to exactly reconstruct the input image.
-High-level content information is preserved in all cases, nonetheless, because the reconstruction process makes the neural activations produced by the input image and the generated one match, proof that feature maps in the VGG network, trained for object recognition, precisely capture spatial information.
-This is useful for the neural style algorithm to produce less hyperrealistic results when combining a photograph with an artwork.
-In style reconstructions, at the top, visualizations have been generated with increasingly larger subsets of layers.
-We observe how the texture transitions from colored noise (a), to just a cloud of colors (b), to clearer strokes (c, d), to bigger structures from the original artwork (d).
-This is a consequence of the larger perceptive field of the filters in higher layers being able to capture larger patterns that ultimately get transferred to the generated texture.
-Being able to parameterize the texture is useful in the Neural Style algorithm to tweak how much detail of the style should be transferred, like in this example.
-It should be small if we just want to transfer the characteristic style of Vincent van Gogh's strokes (b, c), or big if we also want shapes like the moon, the clouds, and the tower in \emph{The Starry Night}.
-
-\begin{figure}[htb]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/neural-style-cnn}
   \caption{
     Content and style reconstructions from an artwork and a photograph, respectively, using different feature maps from a CNN \cite{Gatys2015B}.
@@ -306,6 +296,16 @@ It should be small if we just want to transfer the characteristic style of Vince
   }
   \label{sub:system:method:reconstructions}
 \end{figure}
+
+The results of separately reconstructing content and style can be seen in \autoref{sub:system:method:reconstructions}.
+In content reconstruction, at the bottom, while the visualizations generated from lower layers (a, b, c) preserve pixel fidelity when compared to the input image, those generated from higher layers (d, e) lose pixel fidelity, since due to subsampling effects there is not enough information in the layer to exactly reconstruct the input image.
+High-level content information is preserved in all cases, nonetheless, because the reconstruction process makes the neural activations produced by the input image and the generated one match, proof that feature maps in the VGG network, trained for object recognition, precisely capture spatial information.
+This is useful for the neural style algorithm to produce less hyperrealistic results when combining a photograph with an artwork.
+In style reconstructions, at the top, visualizations have been generated with increasingly larger subsets of layers.
+We observe how the texture transitions from colored noise (a), to just a cloud of colors (b), to clearer strokes (c, d), to bigger structures from the original artwork (d).
+This is a consequence of the larger perceptive field of the filters in higher layers being able to capture larger patterns that ultimately get transferred to the generated texture.
+Being able to parameterize the texture is useful in the Neural Style algorithm to tweak how much detail of the style should be transferred, like in this example.
+It should be small if we just want to transfer the characteristic style of Vincent van Gogh's strokes (b, c), or big if we also want shapes like the moon, the clouds, and the tower in \emph{The Starry Night}.
 
 
 \subsection{Mixed Representation}
@@ -339,7 +339,7 @@ As hinted while explaining the reconstruction process, the hyperparameters taken
 Although the style reconstruction method allows for arbitrary relative weights, \citeauthor{Gatys2015B} settled on a simpler approach by only using increasingly higher CNN layers and giving them equal relative weights.
 In such configuration, relative weights for active CNN layers is set to $w_l = 1/n$, being $n$ the number of active layers, and to $w_l = 0$ for the rest.
 
-\begin{figure}[!tb]
+\begin{figure}[p]
   \includegraphics[width=\textwidth]{gfx/neural-style-results}
   \caption{
     Neural Style hyperparameter variation results of combining a photograph with the style of \emph{Composition VII} by Wassily Kandinsky.

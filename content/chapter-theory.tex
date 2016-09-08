@@ -47,7 +47,7 @@ An artificial neuron is a simple processing unit, forming networks typically org
 The activation function can be implemented either as a threshold to be reached for the neuron to send an output or simply as a transformation of any sort of the input.
 Lastly, experience in ANNs can be understood as connection strength between neurons in biological neural networks and this mechanism is implemented as a set of learnable parameters, commonly called weights, that modify the value of each input to the neuron \cite{Hinton1990}.
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/neurons}
   \caption{
     Biological Neuron vs. Artificial Neuron \cite{Honorio2013}.
@@ -131,7 +131,7 @@ The weights are used to measure the relevance of each one of the inputs in the f
 The bias gets also learned during the training process, but it does not depend on any input value and is used to control the position of the linear boundary.
 The dot product can also be expressed as a weighted sum $\sum_{i=0}^{m} w_i x_i$ where $m$ is the number of parameters the perceptron receives per input, as it is depicted in Figure~\ref{fig:sec:theory:perceptron}.
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{tkz/perceptron}
   \caption{
     Anatomy of the Perceptron \cite{Medina2013}.
@@ -149,7 +149,7 @@ We start with a perceptron whose weights are set to random values and the first 
 As new training examples arrive, the learning algorithm will update the weights of the perceptron so that the linear boundary described by ${w}\cdot{x}+b$, the activation function, leaves data points correctly classified in both sides.
 Figure~\ref{fig:sec:theory:perceptron-training} depicts how this process happens.
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/perceptron-training}
   \caption{
     Linear boundary of a perceptron adjusting to new training examples \cite{Goodspeed2015}.
@@ -179,7 +179,16 @@ Intermediate layers, called \emph{hidden layers}, are the most interesting addit
 Neurons in them perform intermediate predictions and these are fed to neurons in the next layer.
 The fully-connected architecture architecture allows for different neurons in the hidden layers to make predictions of different patterns in the raw input and letting neurons in subsequent layers predict based on those patterns instead.
 
-\begin{figure}[htb]
+If we zoomed in on one the nodes we would see replicated exactly the same structure as we presented previously for the perceptron in \autoref{fig:sec:theory:perceptron}.
+Inputs get weighted and summed, and the result of that passed to some function that performs the prediction.
+One important difference to note is that for the input of subsequent layers to still be real values, neurons in hidden layers must implement non-linear activation functions, representing the probability or certainty of the example belonging to a class.
+Non-linear activation functions are also normally called \emph{transformation functions} since they transform the input rather than producing a binary classification.
+Non-linearities often used are the hyperbolic tangent, $\tanh(x)$, or the logistic function, $(1+e^{-x})^{-1}$, which are inspired by biological neurons' \emph{action potential}, and allow for non-linear classification \cite{Thorpe1989}.
+
+Unlike the perceptron and contrary to incorrect beliefs induced by a misinterpretation of \citeauthor{Minsky1969}'s analysis of the perceptron limitations, disproved by \citet{Hornik1989} in 1989, multi-layer feedforward networks with at least one hidden layer are capable of making predictions of arbitrary precision given enough data regardless of it being non-linearly separable.
+These networks' capabilities make of them universal approximators and viable for intelligent systems, being the key for such an achievement backpropagation, a general purpose supervised learning algorithm for feed-forward networks \cite{Rumelhart1986}.
+
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{tkz/mlffnn}
   \caption{
     Architecture of the most simple multi-layer neural network \cite{Medina2013A}.
@@ -189,15 +198,6 @@ The fully-connected architecture architecture allows for different neurons in th
   }
   \label{fig:sec:theory:mlffnn}
 \end{figure}
-
-If we zoomed in on one the nodes we would see replicated exactly the same structure as we presented previously for the perceptron in \autoref{fig:sec:theory:perceptron}.
-Inputs get weighted and summed, and the result of that passed to some function that performs the prediction.
-One important difference to note is that for the input of subsequent layers to still be real values, neurons in hidden layers must implement non-linear activation functions, representing the probability or certainty of the example belonging to a class.
-Non-linear activation functions are also normally called \emph{transformation functions} since they transform the input rather than producing a binary classification.
-Non-linearities often used are the hyperbolic tangent, $\tanh(x)$, or the logistic function, $(1+e^{-x})^{-1}$, which are inspired by biological neurons' \emph{action potential}, and allow for non-linear classification \cite{Thorpe1989}.
-
-Unlike the perceptron and contrary to incorrect beliefs induced by a misinterpretation of \citeauthor{Minsky1969}'s analysis of the perceptron limitations, disproved by \citet{Hornik1989} in 1989, multi-layer feedforward networks with at least one hidden layer are capable of making predictions of arbitrary precision given enough data regardless of it being non-linearly separable.
-These networks' capabilities make of them universal approximators and viable for intelligent systems, being the key for such an achievement backpropagation, a general purpose supervised learning algorithm for feed-forward networks \cite{Rumelhart1986}.
 
 
 \subsection{Backpropagation}
@@ -220,7 +220,7 @@ For a network, $y$ would be $\sum_i w_i f_i(x)$, being $i$ neurons of the last h
 This continues until the first hidden layer.
 Gradient descent can be efficiently applied on this kind of chained functions using the chain rule, as described by \citet{Linnainmaa1976} and implemented in the backpropagation algorithm.
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/error-function}
   \caption{
     Error function of a single-layer neural network with two input weights \cite{AI4562013}.
@@ -237,21 +237,7 @@ The error gets then propagated backwardly to all neurons layer by layer, as repr
 The propagated error for a neuron $i$ within a given hidden layer is calculated as $E_{i} = \sum_j w_{ij} E_{j}$, being $j$ a neuron in the following layer (closer to output), $E_{j}$ its calculated error, and $w_{ij}$ its associated weight for neuron $i$.
 Propagated errors represent how much of the overall error was contributed by the neuron on its layer.
 
-Once the contributed error has been calculated for the first hidden layer, the weight correction phase begins.
-Starting from the first hidden layer, each weight $w_i$ of a neuron is adjusted by finding the optimal value $w'_i$ that minimizes the error $E$ for that neuron, calculated through error propagation, using the original input $x$.
-The variation $\Delta w_i$ to be applied on $w_i$ is calculated by finding the partial derivative of the error with respect to $w_i$, which can be analytically calculated \cite{Orr2008} as:
-
-\begin{equation}
-  \Delta w_i =
-    -\alpha \frac{\partial E}{\partial w_i} =
-    -\alpha E f'({w}\cdot{x}) x_i
-\end{equation}
-
-Being $f'$ the derivative of the activation function, $\alpha$ the learning rate, carefully picked to make the optimal weights converge, and $-1$ a constant to ensure descent in the algorithm.
-
-Weight correction for neurons in subsequent layers is performed similarly layer by layer until the whole network is updated, the only difference their inputs being the new output $x'$ as a result of neurons in previous layer with their now updated weights $w'$ as depicted in \autoref{fig:sec:theory:mlffnn:backprop-2}.
-
-\begin{figure}[htb]
+\begin{figure}[t]
   \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{tkz/mlffnn-backpropagation-1}
     \caption{Error propagation}
@@ -271,6 +257,20 @@ Weight correction for neurons in subsequent layers is performed similarly layer 
   }
   \label{fig:sec:theory:mlffnn:backprop}
 \end{figure}
+
+Once the contributed error has been calculated for the first hidden layer, the weight correction phase begins.
+Starting from the first hidden layer, each weight $w_i$ of a neuron is adjusted by finding the optimal value $w'_i$ that minimizes the error $E$ for that neuron, calculated through error propagation, using the original input $x$.
+The variation $\Delta w_i$ to be applied on $w_i$ is calculated by finding the partial derivative of the error with respect to $w_i$, which can be analytically calculated \cite{Orr2008} as:
+
+\begin{equation}
+  \Delta w_i =
+    -\alpha \frac{\partial E}{\partial w_i} =
+    -\alpha E f'({w}\cdot{x}) x_i
+\end{equation}
+
+Being $f'$ the derivative of the activation function, $\alpha$ the learning rate, carefully picked to make the optimal weights converge, and $-1$ a constant to ensure descent in the algorithm.
+
+Weight correction for neurons in subsequent layers is performed similarly layer by layer until the whole network is updated, the only difference their inputs being the new output $x'$ as a result of neurons in previous layer with their now updated weights $w'$ as depicted in \autoref{fig:sec:theory:mlffnn:backprop-2}.
 
 For a visual step by step explanation of backpropagation, I recommend further reading \url{http://home.agh.edu.pl/~vlsi/AI/backp_t_en/backprop.html} \cite{Bernacki2005}.
 
@@ -335,16 +335,7 @@ This intuition tells us fully-connected networks require a bigger amount of lear
 
 CNNs can take advantage of spatial information inherent in data thanks to a number of CNN architectural features \cite{LeCun1998}: 1) local receptive fields, 2) shared weights, and 3) subsampling.
 
-\paragraph{Local receptive fields}
-The term \emph{receptive field} is borrowed from the literature of neuroscience and it refers to an area of the body surface that triggers a neurological response in the presence of stimuli \cite{Sherrington1906,Alonso2008}.
-In the context of convolution networks, receptive field refers to a region of the visual input, represented by an image, that is connected with one or several neurons that will react to it and is commonly called \emph{filter}.
-Using local receptive fields means that neurons in the network will not react to the whole image but to a small region of it instead.
-This ensures neurons will extract first the most basic visual features such as edges, end-points, or corners.
-In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces, objects, or scenes.
-Such architecture allows effectively taking into account the spatial correlation existing in images.
-Within a layer, several neurons performing different feature detections can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:convnets:conv-layer-1}.
-
-\begin{figure}[htb]
+\begin{figure}[t]
   \begin{center}
     \includegraphics[width=0.6\textwidth]{gfx/conv-layer-1}
   \end{center}
@@ -353,6 +344,15 @@ Within a layer, several neurons performing different feature detections can be s
   }
   \label{fig:sec:theory:convnets:conv-layer-1}
 \end{figure}
+
+\paragraph{Local receptive fields}
+The term \emph{receptive field} is borrowed from the literature of neuroscience and it refers to an area of the body surface that triggers a neurological response in the presence of stimuli \cite{Sherrington1906,Alonso2008}.
+In the context of convolution networks, receptive field refers to a region of the visual input, represented by an image, that is connected with one or several neurons that will react to it and is commonly called \emph{filter}.
+Using local receptive fields means that neurons in the network will not react to the whole image but to a small region of it instead.
+This ensures neurons will extract first the most basic visual features such as edges, end-points, or corners.
+In subsequent layers, from those elementary visual features, neurons will then extract progressively higher-order features like shapes, textures, faces, objects, or scenes.
+Such architecture allows effectively taking into account the spatial correlation existing in images.
+Within a layer, several neurons performing different feature detections can be stacked to receive the input from the perceptive field as depicted in Figure~\ref{fig:sec:theory:convnets:conv-layer-1}.
 
 \paragraph{Shared weights}
 Layers in CNNs are organized in several slices, each of them containing neurons that detect the same feature but in different regions of the image and each slice detecting different features.
@@ -363,7 +363,7 @@ The output of the convolution is referred to as \emph{feature map}, and all feat
 The height and width are proportional to the size of the original image, whereas the depth is equal to the number of slices in the layer.
 Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \begin{center}
     \includegraphics[width=0.5\textwidth]{gfx/kernel}
   \end{center}
@@ -377,7 +377,7 @@ Such architecture is depicted in Figure~\ref{fig:sec:theory:conv-layer-2}.
   \label{fig:sec:theory:covnets:kernel}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/conv-layer-2}
   \caption{
     Anatomy of a convolutional layer and its output \cite{Guerzhoy2016}.
@@ -400,7 +400,7 @@ A pooling layer takes as input a volume of feature maps and, usually, has a non-
 More specifically, the filter summarizes the feature map by performing max-pooling over its ${2}\times{2}$ regions and producing a single value for each, being this a size reduction of $75\%$.
 It is important to note that this reduction applies only to the height and width of the original input since the depth refers to the number of feature maps and these are preserved.
 
-\begin{figure}
+\begin{figure}[t]
   \begin{subfigure}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{gfx/pool}
     \caption{General pooling}
@@ -435,7 +435,12 @@ After several convolutional-pooling layers, one final step is a fully-connected 
 Optionally, normalization layers can be present after convolutional and pooling layers to increase the learning rate of the network.
 During the learning process, the output of the classification at the end of the fully-connected layers is passed to a loss function that calculates the error of the prediction over a training sample.
 
-\begin{figure}[htb]
+\paragraph{Fully-connected layers}
+The fully-connected layers is essentially a conventional fully-connected neural network only that we feed it with a set of feature maps produced by the convolutional layers, a highly-abstracted and rich representation of the original image at that point.
+That means the data is much less noisy than raw pixels, so overfitting happens to a much lesser degree than what we discussed in \autoref{sec:theory:mlffnn:overfitting}.
+Classification in the last layer is performed in the same fashion as we saw in \autoref{fig:sec:theory:mlffnn}, typically implemented as a $softmax$ layer that restricts the output to real values between 0 and 1, which summed add up to 1, representing the probability of the input belonging to the different classes.
+
+\begin{figure}[t]
   \begin{center}
     \includegraphics[width=\textwidth]{gfx/conv-network}
   \end{center}
@@ -450,11 +455,6 @@ During the learning process, the output of the classification at the end of the 
   }
   \label{fig:sec:theory:convnet}
 \end{figure}
-
-\paragraph{Fully-connected layers}
-The fully-connected layers is essentially a conventional fully-connected neural network only that we feed it with a set of feature maps produced by the convolutional layers, a highly-abstracted and rich representation of the original image at that point.
-That means the data is much less noisy than raw pixels, so overfitting happens to a much lesser degree than what we discussed in \autoref{sec:theory:mlffnn:overfitting}.
-Classification in the last layer is performed in the same fashion as we saw in \autoref{fig:sec:theory:mlffnn}, typically implemented as a $softmax$ layer that restricts the output to real values between 0 and 1, which summed add up to 1, representing the probability of the input belonging to the different classes.
 
 \paragraph{Normalization layers}
 Additionally to these fundamental layers, normalization layers have been used as well, commonly referred to as \emph{Rectified Linear Units} or just \emph{ReLU}.
