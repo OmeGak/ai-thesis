@@ -45,7 +45,7 @@ Since then, the field has evolved and expanded into a myriad of different method
 Within the general framework, we can still talk of neurons organized in \emph{layers}, implementing an \emph{activation function}, and storing experience in \emph{weights}, as depicted in Figure~\ref{fig:sec:theory:neurons}.
 An artificial neuron is a simple processing unit, forming networks typically organized in layers, whose input is the set of outputs of connected neurons from the previous layer and where the process it performs is determined by the activation function.
 The activation function can be implemented either as a threshold to be reached for the neuron to send an output or simply as a transformation of any sort of the input.
-Lastly, experience in ANNs can be understood as connection strength between neurons in biological neural networks and this mechanism is implemented as a set of learnable parameters, commonly called weights, that modify the value of each input to the neuron \cite{Hinton1990}.
+Lastly, experience in ANNs can be understood as connection strength between neurons in biological neural networks and this mechanism is implemented as a set of learnable parameters, commonly called weights, that modify the value of each input to the neuron \cite{Hinton1989}.
 
 \begin{figure}[t]
   \includegraphics[width=\textwidth]{gfx/neurons}
@@ -97,7 +97,7 @@ For instance, the human speech perception system in the brain is equipped with l
 Training analogous deep architectures in artificial neural networks, \emph{deep neural networks} (DNNs), proved problematic from the beginning since classic learning algorithms tended to quickly get stuck in local optima and produced inaccurate classifications.
 This phenomenon, unfortunately, worsened quickly the more layers the neural network presented, which is the case of DNNs.
 
-Efficient unsupervised learning algorithms that made use of increasingly big datasets, available thanks to the widespread use of the Internet, were proposed to overcome the problems presented by local optima in classic learning algorithms \cite{LeCun2004,Hinton2006}, as previously discussed in Section~\ref{sub:theory:background:neural-networks}.
+Efficient unsupervised learning algorithms that made use of increasingly big datasets, available thanks to the widespread use of the Internet, were proposed to overcome the problems presented by local optima in classic learning algorithms \cite{Bottou2004,Hinton2006}, as previously discussed in Section~\ref{sub:theory:background:neural-networks}.
 They, however, were so computationally expensive for training deep neural networks, having millions of parameters to learn, that were not widely used until parallelizable variations were proposed \cite{Dean2012,Chen2012}.
 Powerful Graphic Processing Units (GPUs) becoming a commodity finally allowed quick implementations of these algorithms and marked the rapid development of deep learning in recent years.
 

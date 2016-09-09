@@ -64,13 +64,10 @@
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{enumitem}
 \usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage{todonotes}
-
-\usepackage{enumitem}
-\setlist{noitemsep}
-
 
 % -- Extra config --------------------------------------------------------------
 
@@ -86,6 +83,13 @@
 	bookmarksopen=true,
 	hypertexnames=true
 }
+
+% Reduce distance between items in enumerations
+\setlist{noitemsep}
+
+% Break long URLs in bibliography
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
 
 
 % **************************************************
@@ -140,7 +144,6 @@
 {
 	\setstretch{1.1}
 	\renewcommand{\bibfont}{\normalfont\small}
-	% \setlength{\biblabelsep}{0pt}
 	\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
 	\printbibliography[nottype=image]
 	\printbibliography[heading=subbibliography,title={Images},type=image,prefixnumbers={!}]
