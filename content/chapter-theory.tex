@@ -8,7 +8,7 @@
 
 % ------------------------------------------------------------------------------
 
-In this chapter, I cover the basic concepts of neural networks that will be used later on when separation of style and content is discussed in more detail.
+In this chapter, we cover the basic concepts of neural networks that will be used later on when separation of style and content is discussed in more detail.
 My intention is to allow anybody with basic knowledge in Mathematics and Computing to understand this manuscript from beginning to end.
 
 The explanations will be developed from basic to complex so that sequential reading should guide the reader logically from question to answer while giving as much insight as will be necessary to continue and just enough context to understand the raison d'être of the each concept.
@@ -19,7 +19,7 @@ The explanations will be developed from basic to complex so that sequential read
 \section{Background}
 \label{sec:theory:background}
 
-Before diving into technical aspects, however, I believe it is worth stopping first to introduce the main areas of this research: \emph{Neural Networks} and \emph{Deep Learning}.
+Before diving into technical aspects, however, we believe it is worth stopping first to introduce the main areas of this research: \emph{Neural Networks} and \emph{Deep Learning}.
 Neural Networks is an area of \emph{Machine Learning} very closely related with \emph{Cognitive Sciences} and Deep Learning is also an area of Machine Learning that typically uses neural networks, but let us go step by step.
 
 
@@ -127,7 +127,7 @@ $$
 Where $x$, an array of real values, represents the input of the perceptron; $w$, also an array of real values, represents the weights; $b$ is the \emph{bias}; ${w}\cdot{x}$ is the dot product; ${w}\cdot{x}+b > 0$ is the activation function; and, finally, $0$ and $1$ correspond to the mutually exclusive classes.
 
 The inputs are visualized as data points in the space of variables and the activation function as a linear boundary that leaves them classified either above or below it.
-The weights are used to measure the relevance of each one of the inputs in the final classification, parameters that get learned during the training process in the same fashion as I described in Section~\ref{sub:theory:background:neural-networks}.
+The weights are used to measure the relevance of each one of the inputs in the final classification, parameters that get learned during the training process in the same fashion as we described in Section~\ref{sub:theory:background:neural-networks}.
 The bias gets also learned during the training process, but it does not depend on any input value and is used to control the position of the linear boundary.
 The dot product can also be expressed as a weighted sum $\sum_{i=0}^{m} w_i x_i$ where $m$ is the number of parameters the perceptron receives per input, as it is depicted in Figure~\ref{fig:sec:theory:perceptron}.
 
@@ -272,7 +272,7 @@ Being $f'$ the derivative of the activation function, $\alpha$ the learning rate
 
 Weight correction for neurons in subsequent layers is performed similarly layer by layer until the whole network is updated, the only difference their inputs being the new output $x'$ as a result of neurons in previous layer with their now updated weights $w'$ as depicted in \autoref{fig:sec:theory:mlffnn:backprop-2}.
 
-For a visual step by step explanation of backpropagation, I recommend further reading \url{http://home.agh.edu.pl/~vlsi/AI/backp_t_en/backprop.html} \cite{Bernacki2005}.
+For a visual step by step explanation of backpropagation, we recommend further reading \url{http://home.agh.edu.pl/~vlsi/AI/backp_t_en/backprop.html} \cite{Bernacki2005}.
 
 There is still one final concern when training fully-connected networks.
 Backpropagation teaches networks to predict samples from the training dataset accurately, but the ultimate goal of the training, we must not forget, is making the network capable of predicting unseen samples.
@@ -298,7 +298,7 @@ On top of it, learnable parameters increase exponentially when the input data is
 
 Although feedforward networks are universal approximators, their significant amount of learnable parameters architecture makes them extremely prone to overfitting, as they quickly grows with every neuron added to the network.
 Overfitting made these networks outperformed by domain specific algorithms, relegating them to a secondary position in many areas of Machine Learning for some time.
-In tasks like image or speech recognition, fully-connected networks suffered terribly the effects of overfitting to the point of not being truly usable, displaying frustrating performance when used in end-user applications as I illustrated in Chapter~\ref{chap:intro}.
+In tasks like image or speech recognition, fully-connected networks suffered terribly the effects of overfitting to the point of not being truly usable, displaying frustrating performance when used in end-user applications as we illustrated in Chapter~\ref{chap:intro}.
 
 We will next discuss how convolutional neural networks, developed in the late 90s, eventually proposed a feed-forward multilayer architecture capable of performing robust image and speech recognition, among others tasks.
 They require far fewer learnable parameters than their fully-connected counterparts, making them less prone to overfitting, and are currently the state of the art in many pattern recognition tasks.
@@ -481,7 +481,7 @@ Before we move on here is a quick recap of the architectural parameters that we 
 The shape of the receptive field in a convolutional layer.
 It determines the local connectivity of neurons of the layer with neurons of the previous one.
 It is normally larger in the first layer and it decreases for subsequent ones as the resolution decreases.
-In image recognition tasks, it is common to range from $12x12$ to $15x15$ in the first layer.
+In image recognition tasks, it is common to range from ${12}\times{12}$ to ${15}\times{15}$ in the first layer.
 
 \paragraph{Convolutional output}
 The spatial arrangement of the output volume from a convolutional layer, which comes defined by \emph{depth}, \emph{stride}, and \emph{zero-padding}.
