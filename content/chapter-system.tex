@@ -13,15 +13,15 @@ In this chapter, we finally present and explain \citeauthor{Gatys2015B}'s approa
 We have seen in Chapter~\ref{chap:context} how the field of non-photorealistic rendering has tried for a long time to produce techniques that better separated style and content in order to produce more compelling results in style transfer tasks.
 These techniques focused more and more towards capturing larger-scale patterns, which is something convolutional neural networks (CNNs) trained for object recognition have proved to excel at.
 Recent efforts in understanding CNNs have delivered visualization techniques that can produce compelling images from the internal representations of deep neural networks.
-Neural style relies both on CNNs and visualization techniques to give a holistic approach to the separation of style and content, as we will see next.
+Neural Style relies both on CNNs and visualization techniques to give a holistic approach to the separation of style and content, as we will see next.
 
-The neural style algorithm is a novel approach to style transfer that is able to manipulate content and style independently.
+The Neural Style algorithm is a novel approach to style transfer that is able to manipulate content and style independently.
 Some examples of the results achieved by this algorithm can be seen in \autoref{sub:system:examples}.
 
 \begin{figure}[p]
   \includegraphics[width=\textwidth]{gfx/neural-style-examples}
   \caption{
-    Images synthesized using the neural style algorithm \cite{Gatys2015B}.
+    Images synthesized using the Neural Style algorithm \cite{Gatys2015B}.
     In \textbf{A}, the original photograph, depicting the Neckarfront in T\"ubingen, Germany, (shot by Andreas Praefcke).
     The style is applied from different artworks, shown in the bottom left corner of each panel.
     \textbf{B} \emph{The Shipwreck of the Minotaur} by J.M.W. Turner, 1805.
@@ -43,7 +43,7 @@ Later in this chapter (\autoref{fig:system:results}), we will show how every pai
 
 As discussed in Chapter~\ref{chap:intro}, style has traditionally received little attention in pattern recognition \cite{Karayev2014}.
 Whereas some attempts were done before in the separation of style and content \cite{Tenenbaum2000,Elgammal2004}, their reach was limited to much simpler input, such as characters in different handwriting styles or faces with slightly different poses.
-Neural style presents a completely novel approach to the separation of style and content and it happens to require only minor adjustments on CNNs already trained for object recognition, as we will see next.
+Neural Style presents a completely novel approach to the separation of style and content and it happens to require only minor adjustments on CNNs already trained for object recognition, as we will see next.
 
 
 % ------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ Neural style presents a completely novel approach to the separation of style and
 \section{Method}
 \label{sec:system:method}
 
-Neural style, simply put, takes two sources image (i.e. a photograph and an artwork), extracts the content from one and the style from the other, and generates a new image that matches both simultaneously.
+Neural Style, simply put, takes two sources image (i.e. a photograph and an artwork), extracts the content from one and the style from the other, and generates a new image that matches both simultaneously.
 The whole algorithm relies on a CNN already trained for object recognition to extract content and style from features found in source images.
 
 \citeauthor{Gatys2015B}'s particular implementation uses the VGG network \cite{Simonyan2014}, a CNN already trained for object recognition.
@@ -60,7 +60,7 @@ The network achieved its best results in between 16 and 19 weight layers with an
 Subsampling was performed by 5 max-pooling layers, inserted after some of the convolutional layers, over a ${2}\times{2}$ pixel window with stride set to 2 pixels so that the filter would not have overlapping input.
 
 The VGG network implementation in the Caffe framework is available under the Creative Commons Attribution License \cite{Simonyan2014web}.
-Among the 19-layer VGG network, neural style uses all 16 convolutional and 5 pooling layers, but none of the fully-connected layers, since classification is not required.
+Among the 19-layer VGG network, Neural Style uses all 16 convolutional and 5 pooling layers, but none of the fully-connected layers, since classification is not required.
 Max-pooling is replaced by average pooling because it produces a smoother gradient flow \cite{Boureau2010} and it results in cleaner synthesized images.
 Lastly, for practical reasons, the weights in the networks are rescaled such that the mean activation of each filter over images and positions is equal to one.
 Rescaling weights in this manner is always possible without affecting the output of the CNN when the activation functions are normalized with a ReLU layer, like is the case in the VGG network.
@@ -68,13 +68,13 @@ Rescaling weights in this manner is always possible without affecting the output
 In a bit more detail, these are the algorithm's main stages: 1) both images get processed by the VGG network to produce their feature spaces, 2) content and style are extracted from the image features, and finally 3) a new image that matches them both is generated through backpropagation.
 
 We will focus next on what we exactly mean by content and style and then on how the VGG network can synthesize new images that match the content or style representations from a source image.
-At the end, it will be obvious how it is possible to transfer the style using the neural style algorithm.
+At the end, it will be obvious how it is possible to transfer the style using the Neural Style algorithm.
 
 
 \subsection{Feature Representation}
 \label{sub:system:method:representations}
 
-The content and style of an image in neural style is characterized by making use of the feature space produced by the VGG network.
+The content and style of an image in Neural Style is characterized by making use of the feature space produced by the VGG network.
 If we remember the introduction on CNNs discussed in \autoref{sec:theory:convnets}, an original input gets transformed by filters defined in each layer as it moves across the network during the feed-forward phase.
 To be more precise, a layer produces as many feature maps as filters it defines, each one of them highlighting different features of the input and represented by neural activations.
 Spatially, we can imagine the output from a layer as a volume in which each slice is a feature map where neuron responses are arranged in 2D grids.
@@ -288,7 +288,7 @@ Like in content representation, the gradients $\Delta \vec{x}$ can be obtained w
   \caption{
     Content and style reconstructions from an artwork and a photograph, respectively, using different feature maps from a CNN \cite{Gatys2015B}.
     As the input image gets processed by the CNN, an increasing number of filter maps get produced in each layer.
-    The totality of them for one layer are referred to in neural style as the content representation of the input image.
+    The totality of them for one layer are referred to in Neural Style as the content representation of the input image.
     At the bottom, content reconstructions of the photograph are generated at different stages of the VGG network from the following layers: ``conv1\_1'' (a), ``conv2\_1'' (b), ``conv3\_1'' (c), ``conv4\_1'' (d) and ``conv5\_1''.
     Style representations of an input image are built on top of content representations from a set of layers.
     At the top, style reconstructions of the artwork are generated using increasingly big subsets of layers: ``conv1\_1'' (a), ``conv1\_1'' and ``conv2\_1'' (b), ``conv1\_1'', ``conv2\_1'' and ``conv3\_1'' (c), ``conv1\_1'', ``conv2\_1'', ``conv3\_1'' and ``conv4\_1'' (d), ``conv1\_1'', ``conv2\_1'', ``conv3\_1'', ``conv4\_1'', and ``conv5\_1''.
@@ -300,7 +300,7 @@ Like in content representation, the gradients $\Delta \vec{x}$ can be obtained w
 The results of separately reconstructing content and style can be seen in \autoref{sub:system:method:reconstructions}.
 In content reconstruction, at the bottom, while the visualizations generated from lower layers (a, b, c) preserve pixel fidelity when compared to the input image, those generated from higher layers (d, e) lose pixel fidelity, since due to subsampling effects there is not enough information in the layer to exactly reconstruct the input image.
 High-level content information is preserved in all cases, nonetheless, because the reconstruction process makes the neural activations produced by the input image and the generated one match, proof that feature maps in the VGG network, trained for object recognition, precisely capture spatial information.
-This is useful for the neural style algorithm to produce less hyperrealistic results when combining a photograph with an artwork.
+This is useful for the Neural Style algorithm to produce less hyperrealistic results when combining a photograph with an artwork.
 In style reconstructions, at the top, visualizations have been generated with increasingly larger subsets of layers.
 We observe how the texture transitions from colored noise (a), to just a cloud of colors (b), to clearer strokes (c, d), to bigger structures from the original artwork (d).
 This is a consequence of the larger perceptive field of the filters in higher layers being able to capture larger patterns that ultimately get transferred to the generated texture.
@@ -311,7 +311,7 @@ It should be small if we just want to transfer the characteristic style of Vince
 \subsection{Mixed Representation}
 \label{sub:system:method:mixed-representation}
 
-Having described how to separately reconstruct content and style from an original image, it is straightforward to explain how the neural style algorithm is capable of simultaneously reconstructing both content and style from two different sources and producing the images in \autoref{sub:system:examples}.
+Having described how to separately reconstruct content and style from an original image, it is straightforward to explain how the Neural Style algorithm is capable of simultaneously reconstructing both content and style from two different sources and producing the images in \autoref{sub:system:examples}.
 
 Like in the previous cases, we want to find a new image $\vec{x}$ whose content representation and style representation matches at the same time the content representation of a photograph $\vec{p}$ in a given layer and the style representation of an artwork $\vec{a}$ in a set of layers.
 Starting from a white noise image $\vec{x}$ the algorithm will simply need to minimize the following combined loss function:
@@ -378,15 +378,15 @@ A neural system trained to perform a basic computational task of biological visi
 They speculate that, when learning object recognition, the network has to become invariant to all image variations that preserve object identity, so they suggest that the network internal representations should help reach this goal.
 Internal representations that capture not only the content of an image but also the possible variations in its appearance would be extremely practical for object recognition.
 
-The style representation described for neural style requires calculating correlations between neuron activations.
+The style representation described for Neural Style requires calculating correlations between neuron activations.
 This kind of inter-neuron operation is, in fact, biologically plausible.
-Complex cells in the human visual system perform similar operations in order to perceive motion \cite{Adelson1985}, inviting us to wonder if a process similar to neural style is what actually grants us the ability to abstract content from style and, therefore, our ability to create and enjoy art.
+Complex cells in the human visual system perform similar operations in order to perceive motion \cite{Adelson1985}, inviting us to wonder if a process similar to Neural Style is what actually grants us the ability to abstract content from style and, therefore, our ability to create and enjoy art.
 
 Yet, I argue we are still far from a method that encompasses the creativity process in the human mind.
 \citeauthor{Gatys2015A} in \cite{Gatys2015A} regarded \citet{Portilla2000}'s approach in texture transfer as not grasping the whole scope of natural textures because the method required careful selection of statistical measurements on a per-texture basis.
-This is not the case in neural style, as style and content are consistently separated.
-However, images generated with neural style require fine-tuning hyperparameters to achieve compelling results on a per content-style pair basis.
-How can we quantify aesthetic beauty? This is still an open problem in non-photorealistic rendering \cite{Kyprianidis2013} and although neural style appears to have brought us closer to answering it, there is more work to be done in that direction.
+This is not the case in Neural Style, as style and content are consistently separated.
+However, images generated with Neural Style require fine-tuning hyperparameters to achieve compelling results on a per content-style pair basis.
+How can we quantify aesthetic beauty? This is still an open problem in non-photorealistic rendering \cite{Kyprianidis2013} and although Neural Style appears to have brought us closer to answering it, there is more work to be done in that direction.
 
-Neural style astonishing results attracted a lot of attention and research has started on both adapting neural style for other purposes as well as on applying the same concepts in different ways.
+Neural Style astonishing results attracted a lot of attention and research has started on both adapting Neural Style for other purposes as well as on applying the same concepts in different ways.
 We will survey ongoing research in the next chapter.
