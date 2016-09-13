@@ -301,4 +301,4 @@ Conversely, the network is then capable of producing transformed images in the l
 The fine-tuning step consists of re-training the later layers of the network, which are more relevant to the task at hand, without discarding the learned weights in the earlier layers, which already know how to extract general purpose visual features.
 Semantic segmentation can be attained by training with the PASCAL VOC 2011 dataset, containing ground truth for segmentation tasks.
 
-Finally, putting everything together, by applying fine-tuning with the PASCAL VOC dataset and a per-pixel loss function, the pre-trained, now fully-convolutional network is effectively trained so that the last layer produces the per-pixel class predictions observable in \autoref{fig:sec:applications:beyond:segmentation}.
+Finally, putting everything together, by applying fine-tuning with the PASCAL VOC 2011 dataset and a per-pixel loss function, the pre-trained, now fully-convolutional network is effectively trained so that the last layer produces the per-pixel class predictions observable in \autoref{fig:sec:applications:beyond:segmentation}.

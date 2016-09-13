@@ -324,7 +324,7 @@ Starting from a white noise image $\vec{x}$ the algorithm will simply need to mi
 
 Where $\alpha/\beta$ is the ratio of emphasis of content over style, since content and style cannot be completely disentangled and a trade-off must be manually adjusted for each pair of source images.
 The gradients $\Delta \vec{x}$, as before, are calculated with standard error propagation and are used to adjust the white noise image $\vec{x}$ until it reaches a compelling result.
-The optimization process is one of huge dimensionality, taking into account the 144 million parameters in VGG-19 \cite{Simonyan2014} and the unconstrained resolution of source images, so \citeauthor{Gatys2015A} propose L-BFGS \cite{Zhu1994} as a suitable gradient optimization strategy.
+The optimization process is one of huge dimensionality, taking into account the 144 million parameters in the VGG-19 network \cite{Simonyan2014} and the unconstrained resolution of source images, so \citeauthor{Gatys2015A} propose L-BFGS \cite{Zhu1994} as a suitable gradient optimization strategy.
 
 
 % ------------------------------------------------------------------------------

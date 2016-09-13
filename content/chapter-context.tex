@@ -71,7 +71,7 @@ Deep learning frameworks are just programming libraries that provide out-of-the-
 Some of the most popular ones currently are Caffe, developed by the Berkeley Vision and Learning Center \cite{Jia2014}; Theano, developed by l’Université de Montréal \cite{Bergstra2010}; TensorFlow, developed by Google \cite{Abadi2015}; or Torch, supported by Facebook and Nvidia \cite{Collobert2002}.
 
 Deep learning frameworks have helped much to the reproducibility of experiments with neural networks, as they simplify the requirements for sharing architectures as well as trained models between researchers.
-In Chapter~\ref{chap:system} we will see how the VGG network \cite{Simonyan2014}, one of the winners of ILSVRC 2014, rivaling human performance \cite{Russakovsky2015}, implemented in Caffe, and publicly available \cite{Simonyan2014web}, is used to effectively separate style and content.
+In Chapter~\ref{chap:system}, we will see how the VGG network \cite{Simonyan2014}, one of the winners of ILSVRC 2014, rivaling human performance \cite{Russakovsky2015}, implemented in Caffe, and publicly available \cite{Simonyan2014web}, is used to effectively separate style and content.
 Next, we will talk about the interest that grew for understanding what exactly happens within intermediate layers of CNNs trained for object recognition, resulting in a number of visualization techniques with surprising results.
 
 
@@ -121,39 +121,40 @@ In \autoref{fig:sec:context:deep-visualization-class}, some examples of this tec
 The generated images do not resemble natural images very much, more like graphic artifacts instead, but the network will anyway classify them correctly as these artifacts have been generated to cause precisely the right neural activations.
 
 \begin{figure}[t]
+  \captionsetup[subfigure]{labelformat=empty}
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{gfx/deep-visualization-class-1}
-    \caption{dumbbell}
+    \caption{Dumbbell}
     \label{fig:sec:context:deep-visualization-class-1}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{gfx/deep-visualization-class-2}
-    \caption{dalmatian}
+    \caption{Dalmatian}
     \label{fig:sec:context:deep-visualization-class-2}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{gfx/deep-visualization-class-3}
-    \caption{bell pepper}
+    \caption{Bell pepper}
     \label{fig:sec:context:deep-visualization-class-3}
   \end{subfigure}
   \par\medskip
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{gfx/deep-visualization-class-4}
-    \caption{keyboard}
+    \caption{Keyboard}
     \label{fig:sec:context:deep-visualization-class-4}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{gfx/deep-visualization-class-5}
-    \caption{kit fox}
+    \caption{Kit fox}
     \label{fig:sec:context:deep-visualization-class-5}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{gfx/deep-visualization-class-6}
-    \caption{goose}
+    \caption{Goose}
     \label{fig:sec:context:deep-visualization-class-6}
   \end{subfigure}
   \caption{
@@ -214,7 +215,7 @@ Artistic rendering, however, has been traditionally studied as a field of comput
 We can understand artworks and paintings as the composition of form and content, as we commented in Chapter~\ref{chap:intro}.
 Style transfer is the task of synthesizing a new stylized image with the same content as some source image and the style of a style sample.
 To accomplish style transfer, not only the style-content combination is important, but even more so is the definition and extraction of style and content.
-The difficulty of the latter is intrinsic to the separation of style and content, which is a very fundamental problem, since not even in the history of art literature seems to be a consensus as to what is content and what is style \cite{Xie2007}.
+The difficulty of the latter is intrinsic to the separation of style and content, which is a fundamental problem, since not even in the history of art literature seems to be a consensus as to what is content and what is style \cite{Xie2007}.
 
 Because of this fundamental difficulty, we cannot use any formally-described evaluation for style transfer, and so we resort to appealing the human visual system as it will be the ultimate consumer of the generated images \cite{Lin2011}.
 The main criteria commonly used are the score from an \emph{artistic Turing test} and the \emph{perceptual quality}.
@@ -265,7 +266,7 @@ Then, a style transfer process similar to the previous one applies the texture b
 This method, like the ones described before, uses low-level statistical features.
 \citeauthor{Xie2007} already mentioned the disadvantage of this and anticipated a sharper separation of style and content using higher-level, larger-scale features involving prior human knowledge.
 
-\begin{figure}[t]
+\begin{figure}[p]
   \begin{subfigure}[b]{0.24\textwidth}
     \includegraphics[width=\textwidth]{gfx/style-transfer-feature-1}
     \caption{Style example}
@@ -301,12 +302,7 @@ This method, like the ones described before, uses low-level statistical features
   \label{fig:sec:context:style-transfer:style-transfer-feature}
 \end{figure}
 
-Lastly, in 2010, \citet{Lee2010} proposed an improved method called Directional Texture Transfer that finally transferred larger-scale patterns.
-The algorithm attains this goal by taking into account the flow of a target image and interpolating it with that of a style source, using the result as the guide to place brush strokes.
-We can see in \autoref{fig:sec:context:style-transfer:style-transfer-directional} how this approach preserves the different regions of the target image very sharply, as the strokes are transferred with different intensity.
-This method creates compelling results, but it is limited to stroke-based rendering and far from the generalization we are looking for in a holistic separation of style and content.
-
-\begin{figure}[t]
+\begin{figure}[p]
   \includegraphics[width=\textwidth]{gfx/style-transfer-directional}
   \caption{
     Results of applying Directional Texture Transfer \cite{Lee2010}.
@@ -314,6 +310,11 @@ This method creates compelling results, but it is limited to stroke-based render
   }
   \label{fig:sec:context:style-transfer:style-transfer-directional}
 \end{figure}
+
+Lastly, in 2010, \citet{Lee2010} proposed an improved method called Directional Texture Transfer that finally transferred larger-scale patterns.
+The algorithm attains this goal by taking into account the flow of a target image and interpolating it with that of a style source, using the result as the guide to place brush strokes.
+We can see in \autoref{fig:sec:context:style-transfer:style-transfer-directional} how this approach preserves the different regions of the target image very sharply, as the strokes are transferred with different intensity.
+This method creates compelling results, but it is limited to stroke-based rendering and far from the generalization we are looking for in a holistic separation of style and content.
 
 \citeauthor{Kyprianidis2013}, in a style transfer techniques survey \cite{Kyprianidis2013} published in 2013, identified a clear tendency towards global-scope approaches, like \citeauthor{Lee2010}'s, rather than to local-level statistical measurements, like the first three ones we discussed in this section.
 Global scope approaches require taking larger-scale patterns into account, which is, precisely, what deep neural networks trained for object recognition are very good at.

@@ -19,8 +19,8 @@ The explanations will be developed from basic to complex so that sequential read
 \section{Background}
 \label{sec:theory:background}
 
-Before diving into technical aspects, however, we believe it is worth stopping first to introduce the main areas of this research: \emph{Neural Networks} and \emph{Deep Learning}.
-Neural Networks is an area of \emph{Machine Learning} very closely related with \emph{Cognitive Sciences} and Deep Learning is also an area of Machine Learning that typically uses neural networks, but let us go step by step.
+Before diving into technical aspects, however, we believe it is worth stopping first to introduce the main areas of this research: Neural Networks and Deep Learning.
+Neural Networks is an area of Machine Learning very closely related with Cognitive Sciences and Deep Learning is also an area of Machine Learning that typically uses neural networks, but let us go step by step.
 
 
 \subsection{Neural Networks}
@@ -99,7 +99,7 @@ This phenomenon, unfortunately, worsened quickly the more layers the neural netw
 
 Efficient unsupervised learning algorithms that made use of increasingly big datasets, available thanks to the widespread use of the Internet, were proposed to overcome the problems presented by local optima in classic learning algorithms \cite{Bottou2004,Hinton2006}, as previously discussed in Section~\ref{sub:theory:background:neural-networks}.
 They, however, were so computationally expensive for training deep neural networks, having millions of parameters to learn, that were not widely used until parallelizable variations were proposed \cite{Dean2012,Chen2012}.
-Powerful Graphic Processing Units (GPUs) becoming a commodity finally allowed quick implementations of these algorithms and marked the rapid development of deep learning in recent years.
+Powerful General Purpose Graphic Processing Units (GPGPUs) becoming a commodity finally allowed quick implementations of these algorithms and marked the rapid development of deep learning in recent years.
 
 Deep Learning is at the moment a quickly growing field covering a wide range of machine learning techniques and architectures.
 In this research, we cover only the architecture of DNNs that we need for further discussing the separation of style and content, \emph{convolutional neural networks} in Section~\ref{sec:theory:convnets}.
@@ -116,13 +116,13 @@ It was created by \citet{Rosenblatt1958} in 1957 based on the studies of \citet{
 
 The perceptron can be described as performing a task of binary classification, which is simply deciding which of two mutually exclusive classes a set of inputs belongs to \cite{Freund1999} and it is mathematically expressed as follows:
 
-$$
+\begin{equation}
   f(x) =
   \begin{cases}
     1 & \text{if } {w}\cdot{x}+b > 0\\
     0 & \text{otherwise}
   \end{cases}
-$$
+\end{equation}
 
 Where $x$, an array of real values, represents the input of the perceptron; $w$, also an array of real values, represents the weights; $b$ is the \emph{bias}; ${w}\cdot{x}$ is the dot product; ${w}\cdot{x}+b > 0$ is the activation function; and, finally, $0$ and $1$ correspond to the mutually exclusive classes.
 
@@ -414,8 +414,8 @@ It is important to note that this reduction applies only to the height and width
   \end{subfigure}
   \caption{
     Overview of a pooling layer.
-    On the left, the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}.
-    On the right, a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.
+    On the left (a), the input and output of a pooling layer reducing only the height and width of the volume \cite{Karpathy}.
+    On the right (b), a single feature map of the input volume being subsampled by non-overlapping ${2}\times{2}$ max-pooling \cite{Karpathya}.
   }
   \label{fig:sec:theory:convnets:pooling}
 \end{figure}
@@ -496,5 +496,5 @@ Zero-padding is used to pad the output volume with zeros when maintaining the sa
 
 \paragraph{Pooling filter}
 Shape of the filter in pooling layers, defined by height, width, and stride.
-Usually $2x2$ filter with stride 2 are used, as in the example depicted in \autoref{fig:sec:theory:convnets:pooling:max}.
+Usually ${2}\times{2}$ filter with stride 2 are used, as in the example depicted in \autoref{fig:sec:theory:convnets:pooling:max}.
 Stride is set to 2 so that the filters do not overlap.
